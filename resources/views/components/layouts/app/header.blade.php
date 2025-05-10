@@ -15,7 +15,7 @@
 
             <div class="hidden sm:block">
             <flux:dropdown>
-                <flux:navbar.item icon="layout-grid" wire:navigate>
+                <flux:navbar.item icon="layout-grid" icon:trailing="chevron-down" wire:navigate>
                     {{ __('Categories') }}
                 </flux:navbar.item>
                 <flux:navmenu>
