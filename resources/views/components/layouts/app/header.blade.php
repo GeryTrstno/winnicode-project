@@ -12,8 +12,24 @@
                     <x-app-logo />
                 </a>
             </div>
-            <flux:spacer />
 
+            <div class="hidden sm:block">
+            <flux:dropdown>
+                <flux:navbar.item icon="layout-grid" wire:navigate>
+                    {{ __('Categories') }}
+                </flux:navbar.item>
+                <flux:navmenu>
+                    <flux:navmenu.item href="{{ route('news') }}">Economics</flux:navmenu.item>
+                    <flux:navmenu.item href="{{ route('news') }}">Technology</flux:navmenu.item>
+                    <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
+                    <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
+                    <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
+                    <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
+                </flux:navmenu>
+            </flux:dropdown>
+
+            </div>
+            <flux:spacer />
             <flux:navbar class="-mb-px max-lg:hidden">
                 <flux:navbar.item icon="home-icon" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Home') }}
@@ -76,9 +92,7 @@
                     </flux:menu>
                 </flux:dropdown>
             </div>
-
         </flux:header>
-
 
         <!-- Mobile Menu -->
         <flux:sidebar stashable sticky class="lg:hidden border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -106,7 +120,30 @@
 
             </flux:navlist>
 
-            <flux:spacer />
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Categories')">
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" wire:navigate>
+                    {{ __('Economics') }}
+                    </flux:navlist.item>
+                </flux:navlist.group>
+
+            </flux:navlist>
         </flux:sidebar>
 
         {{ $slot }}
