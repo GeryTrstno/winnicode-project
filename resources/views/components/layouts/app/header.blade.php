@@ -28,6 +28,7 @@
                 </flux:navmenu>
             </flux:dropdown>
 
+
             </div>
             <flux:spacer />
             <flux:navbar class="-mb-px max-lg:hidden">
@@ -92,6 +93,7 @@
                     </flux:menu>
                 </flux:dropdown>
             </div>
+
         </flux:header>
 
         <!-- Mobile Menu -->

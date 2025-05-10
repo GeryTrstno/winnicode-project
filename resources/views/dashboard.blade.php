@@ -1,21 +1,53 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-4">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-        </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="relative h-[35vh] overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
             <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
         </div>
+        <flux:spacer></flux:spacer>
+        <flux:heading class="text-xl">Trending Now</flux:heading>
+        <div class="grid auto-rows-min gap-5 md:grid-cols-3">
+            @for ($i = 0; $i < 3; $i++)
+                <div class="relative aspect-square overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                    <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+                </div>
+            @endfor
+        </div>
+        <flux:spacer></flux:spacer>
+
+        <flux:separator></flux:separator>
+
+        <flux:spacer></flux:spacer>
+
+        <flux:heading class="text-xl">Browse by Category</flux:heading>
+
+        <div class="flex flex-row gap-2 flex-wrap">
+            @for ($i = 0; $i < 6; $i++)
+                <flux:button href="{{ route('categories') }}" variant="filled">Economics</flux:button>
+            @endfor
+        </div>
+
+        <div class="grid auto-rows-min gap-5 md:grid-cols-2">
+            @for ($i = 0; $i < 4; $i++)
+                <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                    <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+                </div>
+            @endfor
+        </div>
+
+        <flux:spacer></flux:spacer>
+
+        <flux:separator></flux:separator>
+
+        <flux:spacer></flux:spacer>
+
+        <flux:heading class="text-xl">Latest News</flux:heading>
+
+        <livewire:news-feed />
+
+        <flux:spacer></flux:spacer>
     </div>
+
 </x-layouts.app>
+
+
+
