@@ -5,7 +5,7 @@
     $categories = ['Politics', 'Economics', 'Technology', 'Science', 'Health', 'Entertainment'];
 
     $quickLinks = [
-        ['name' => 'Dashboard', 'route' => 'dashboard'],
+        ['name' => 'Dashboard', 'route' => 'home'],
         ['name' => 'Categories', 'route' => 'categories'],
         ['name' => 'News', 'route' => 'news'],
         ['name' => 'About Us', 'route' => 'about-us'],
@@ -27,7 +27,7 @@
             <flux:text class="flex justify-center mt-2" size="xl">Subscribe to our newsletter to receive the latest news directly in your inbox.</flux:text>
             <div class="flex justify-center mt-8">
                 <flux:input.group class="w-full max-w-md">
-                    <flux:input placeholder="Your Email Address"></flux:input>
+                    <flux:input placeholder="Your Email Address..."></flux:input>
                     <flux:button variant="filled">Subscribe</flux:button>
                 </flux:input.group>
             </div>
