@@ -2,6 +2,8 @@
     <flux:main container>
         {{ $slot }}
     </flux:main>
+
+    <x-layouts.app.footer></x-layouts.app.footer>
+
 </x-layouts.app.header>
 
-<x-layouts.app.footer></x-layouts.app.footer>

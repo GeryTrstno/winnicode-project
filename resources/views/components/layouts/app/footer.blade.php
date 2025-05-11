@@ -53,9 +53,20 @@
 
             <div>
                 <flux:heading size="lg" class="mb-4">Contact Us</flux:heading>
-                <flux:text class="mb-2">info@newstimes.com</flux:text>
-                <flux:text class="mb-2">+1 (555) 123-4567</flux:text>
-                <flux:text class="mb-2">123 News Street, Media City</flux:text>
+
+                <div class="flex items-center mb-3">
+                    <flux:icon.www></flux:icon.www>
+                    <flux:text class="ms-3">info@newstimes.com</flux:text>
+                </div>
+                <div class="flex items-center mb-3">
+                    <flux:icon.phone></flux:icon.phone>
+                    <flux:text class="ms-3">+1 234 567 890</flux:text>
+                </div>
+                <div class="flex items-center mb-3">
+                    <flux:icon.map-pin></flux:icon.map-pin>
+                    <flux:text class="ms-3">123 News street, Media City</flux:text>
+                </div>
+
             </div>
         </div>
 
