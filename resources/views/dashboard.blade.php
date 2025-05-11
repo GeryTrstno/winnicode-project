@@ -12,11 +12,10 @@
                 </div>
             @endfor
         </div>
+
         <flux:spacer></flux:spacer>
 
         <flux:separator></flux:separator>
-
-        <flux:spacer></flux:spacer>
 
         <flux:heading class="text-xl">Browse by Category</flux:heading>
 
@@ -38,13 +37,9 @@
 
         <flux:separator></flux:separator>
 
-        <flux:spacer></flux:spacer>
-
         <flux:heading class="text-xl">Latest News</flux:heading>
 
         <livewire:news-feed />
-
-        <flux:spacer></flux:spacer>
     </div>
 
 </x-layouts.app>

@@ -1,0 +1,79 @@
+@php
+    $hideFooterRoutes = ['settings.profile', 'settings.password', 'settings.appearance'];
+    $shouldShowFooter = !in_array(request()->route()->getName(), $hideFooterRoutes);
+
+    $categories = ['Politics', 'Economics', 'Technology', 'Science', 'Health', 'Entertainment'];
+
+    $quickLinks = [
+        ['name' => 'Dashboard', 'route' => 'dashboard'],
+        ['name' => 'Categories', 'route' => 'categories'],
+        ['name' => 'News', 'route' => 'news'],
+        ['name' => 'About Us', 'route' => 'about-us'],
+        ['name' => 'Profile', 'route' => 'settings.profile'],
+    ];
+
+    $policies = [
+        ['name' => 'Privacy Policy', 'path' => '/privacy-policy'],
+        ['name' => 'Terms of Services', 'path' => '/terms'],
+        ['name' => 'Cookies Policy', 'path' => '/cookies'],
+    ];
+@endphp
+
+@if($shouldShowFooter)
+    <flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <div class="grid gap-8 py-8 md:grid-cols-4">
+            <div>
+                <flux:heading size="lg" class="mb-4">News Times</flux:heading>
+                <flux:text>Delivering accurate and timely news around the world</flux:text>
+            </div>
+
+            <div>
+                <flux:heading size="lg" class="mb-4">Categories</flux:heading>
+                <div class="space-y-2">
+                    @foreach($categories as $category)
+                        <div>
+                            <flux:text>{{ $category }}</flux:text>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div>
+                <flux:heading size="lg" class="mb-4">Quick Links</flux:heading>
+                <div class="space-y-2">
+                    @foreach($quickLinks as $link)
+                        <div>
+                            <a href="{{ route($link['route']) }}">
+                                <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $link['name'] }}</flux:text>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div>
+                <flux:heading size="lg" class="mb-4">Contact Us</flux:heading>
+                <flux:text class="mb-2">info@newstimes.com</flux:text>
+                <flux:text class="mb-2">+1 (555) 123-4567</flux:text>
+                <flux:text class="mb-2">123 News Street, Media City</flux:text>
+            </div>
+        </div>
+
+        <flux:separator />
+
+        <!-- Bottom Bar -->
+        <div class="flex flex-wrap items-center gap-6 py-6">
+            <flux:text>© 2025 News Times. All rights reserved.</flux:text>
+
+            <flux:spacer></flux:spacer>
+
+            <div class="flex flex-wrap gap-6">
+                @foreach($policies as $policy)
+                    <a href="{{ $policy['path'] }}">
+                        <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $policy['name'] }}</flux:text>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </flux:footer>
+@endif
