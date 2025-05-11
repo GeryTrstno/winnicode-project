@@ -2,8 +2,7 @@
     <flux:main container>
         {{ $slot }}
     </flux:main>
-
-    <x-layouts.app.footer></x-layouts.app.footer>
+    @include('partials.footer')
 
 </x-layouts.app.header>
 

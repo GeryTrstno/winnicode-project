@@ -21,6 +21,20 @@
 
 @if($shouldShowFooter)
     <flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+
+        <div class="relative h-[20vh] overflow-hidden rounded-xl">
+            <flux:heading class="flex justify-center mt-4" size="xl">Stay Updated</flux:heading>
+            <flux:text class="flex justify-center mt-2" size="xl">Subscribe to our newsletter to receive the latest news directly in your inbox.</flux:text>
+            <div class="flex justify-center mt-8">
+                <flux:input.group class="w-full max-w-md">
+                    <flux:input placeholder="Your Email Address"></flux:input>
+                    <flux:button variant="filled">Subscribe</flux:button>
+                </flux:input.group>
+            </div>
+        </div>
+
+        <flux:separator />
+
         <div class="grid gap-8 py-8 md:grid-cols-4">
             <div>
                 <flux:heading size="lg" class="mb-4">News Times</flux:heading>
