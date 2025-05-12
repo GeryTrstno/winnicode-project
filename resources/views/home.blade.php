@@ -4,7 +4,13 @@
             <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
         </div>
         <flux:spacer></flux:spacer>
-        <flux:heading class="text-xl">Trending Now</flux:heading>
+        <div class="flex flex-row items-center justify-between">
+            <flux:heading class="text-xl">Trending Now</flux:heading>
+            <a class="flex flex-row items-center gap-2" href="{{ route('news') }}">
+                <flux:text class="hover:text-zinc-800 dark:hover:text-white">See more</flux:text>
+                <flux:icon name="arrow-right" class="h-5 w-5 shrink-0 text-neutral-500 dark:text-neutral-400" />
+            </a>
+        </div>
         <div class="grid auto-rows-min gap-5 md:grid-cols-3">
             @for ($i = 0; $i < 3; $i++)
                 <div class="relative aspect-square overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
