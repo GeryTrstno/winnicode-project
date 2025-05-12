@@ -11,6 +11,10 @@ Route::view('categories', 'categories')
     ->middleware(['auth', 'verified'])
     ->name('categories');
 
+Route::view('list-of-news', 'list-of-news')
+    ->middleware(['auth', 'verified'])
+    ->name('list-of-news');
+
 Route::view('news', 'news')
     ->middleware(['auth', 'verified'])
     ->name('news');
