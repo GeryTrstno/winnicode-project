@@ -27,7 +27,7 @@
 
         <div class="flex flex-row gap-2 flex-wrap">
             @for ($i = 0; $i < 6; $i++)
-                <flux:button href="{{ route('categories') }}" variant="filled">Economics</flux:button>
+                <flux:button href="{{ route('categories') }}" variant="filled">Economy</flux:button>
             @endfor
         </div>
 

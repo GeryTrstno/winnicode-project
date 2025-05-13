@@ -2,7 +2,7 @@
     $hideFooterRoutes = ['settings.profile', 'settings.password', 'settings.appearance'];
     $shouldShowFooter = !in_array(request()->route()->getName(), $hideFooterRoutes);
 
-    $categories = ['Politics', 'Economics', 'Technology', 'Science', 'Health', 'Entertainment'];
+    $categories = ['Politics', 'Economy', 'Technology', 'Science', 'Health', 'Entertainment'];
 
     $quickLinks = [
         ['name' => 'Dashboard', 'route' => 'home'],
@@ -22,16 +22,17 @@
 @if($shouldShowFooter)
     <flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
 
-        <div class="relative h-[20vh] overflow-hidden rounded-xl">
-            <flux:heading class="flex justify-center mt-4" size="xl">Stay Updated</flux:heading>
-            <flux:text class="flex justify-center mt-2" size="xl">Subscribe to our newsletter to receive the latest news directly in your inbox.</flux:text>
-            <div class="flex justify-center mt-8">
-                <flux:input.group class="w-full max-w-md">
-                    <flux:input placeholder="Your Email Address..."></flux:input>
-                    <flux:button variant="filled">Subscribe</flux:button>
-                </flux:input.group>
-            </div>
+    <div class="relative overflow-hidden rounded-xl p-4 sm:p-6 md:p-8">
+        <flux:heading class="text-center" size="xl">Stay Updated</flux:heading>
+        <flux:text class="text-center mt-2" size="xl">Subscribe to our newsletter to receive the latest news directly in your inbox.</flux:text>
+        <div class="flex justify-center mt-8">
+            <flux:input.group class="w-full max-w-sm md:max-w-md lg:max-w-lg">
+                <flux:input placeholder="Your Email Address..."></flux:input>
+                <flux:button variant="filled">Subscribe</flux:button>
+            </flux:input.group>
         </div>
+    </div>
+
 
         <flux:separator />
 

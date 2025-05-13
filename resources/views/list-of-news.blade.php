@@ -1,7 +1,7 @@
 @php
     $subcategories = [
         (object) ['slug' => 'market', 'name' => 'Market'],
-        (object) ['slug' => 'Stock', 'name' => 'stock'],
+        (object) ['slug' => 'Stock', 'name' => 'Stock'],
         (object) ['slug' => 'economics', 'name' => 'Economics'],
         (object) ['slug' => 'cryptocurrency', 'name' => 'Cryptocurrency'],
         (object) ['slug' => 'forex', 'name' => 'Forex'],
