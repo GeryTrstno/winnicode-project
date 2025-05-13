@@ -28,7 +28,6 @@
         <flux:separator class="mt-4 mb-4"></flux:separator>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
             <div class="md:col-span-2">
                 <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
                     <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
@@ -38,8 +37,7 @@
                     <p class="text-zinc-600 dark:text-zinc-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi natus quo pariatur voluptate doloremque ipsam, blanditiis enim deserunt accusantium aperiam harum fugiat adipisci, recusandae quasi dicta nisi nostrum odit aspernatur!</p>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-6">
-
+            <div class="grid grid-cols-1 gap-4">
                 @for ($i = 0; $i < 3; $i++)
                     <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
                         <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
