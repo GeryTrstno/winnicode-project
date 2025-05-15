@@ -17,25 +17,35 @@ cd winnicode-project
 
 ### 2. Download Dependencies
 ```bash
+# Menginstall Dependecnies PHP
 composer install
+
+#Menginstall Dependencies Node.js
 npm install
 ```
 
 ### 3. Generate API Key
 ```bash
+# Membuat file .env
 cp .env.example .env
+
+#Mengenerate API Key ke file .env
 php artisan key:generate
 ```
 ### 4. Buat file Database
 ```bash
+# Membuat file database.sqlite di folder database
 touch /database/database.sqlite
+
+#Migrasi database.sqlite
 php artisan migrate
 ```
 
 ### 5. Jalankan localhost
 Jalankan command ini di terminal terpisah
 ```bash
-composer run dev
+#Menjalankan Server
+composer run dev     # command ini memungkinkan untuk menejalankan php artisan serve dan npm run dev dalam satu waktu
 ```
 
 ### 6. Akses http://127.0.0.1:8000/ di browser anda
