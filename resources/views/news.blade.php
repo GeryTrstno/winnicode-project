@@ -1,4 +1,5 @@
 @php
+    $numofDiscussions = 200;
     $authors = ['John Doe', 'Jane Smith', 'Alex Johnson'];
     $totalAuthors = count($authors);
     $text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel risus suscipit, hendrerit magna id, pretium erat. Morbi venenatis dui sit amet enim efficitur, at euismod quam bibendum. Donec convallis diam quis dolor aliquam, ut convallis orci lobortis. Praesent lacus purus, elementum ut consequat non, blandit quis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer id malesuada diam, in ultrices arcu. Suspendisse vel odio in nunc auctor laoreet. Maecenas purus eros, blandit quis augue non, finibus laoreet orci. Mauris nec tortor at lorem venenatis mattis eget non justo. Nullam scelerisque nec nisl quis maximus. Quisque maximus urna sit amet erat venenatis, eu aliquam nisi condimentum. Fusce eu leo nec ex auctor tempor vel eu ante. Vivamus et ante mollis, ullamcorper libero vel, aliquam sem. Vivamus at mollis nulla.
@@ -39,25 +40,23 @@
                 </div>
             </div>
         </div>
-        <flux:separator></flux:separator>
 
+        {{-- <flux:separator></flux:separator>
         <section class="py-4 antialiased">
-            <div class="max-w-2xl mx-auto px-4">
-                <div class="flex justify-between items-center mb-6">
-                  <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+            <div class="flex justify-center w-full">
+                <div class="relative w-full md:w-2/3 rounded-xl">
+                    <flux:heading size="xl" class="mb-4">Discussions ({{ $numofDiscussions }})</flux:heading>
+                    <form class="mb-6">
+                        <flux:textarea class="mb-4" rows="auto"
+                            placeholder="Write a comment..."
+                        />
+                        <flux:button>
+                            Post comment
+                        </flux:button>
+                    </form>
+
                 </div>
-                <form class="mb-6">
-                    <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg border">
-                        <label for="comment" class="sr-only">Your comment</label>
-                        <textarea id="comment" rows="6"
-                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white"
-                            placeholder="Write a comment..." required></textarea>
-                    </div>
-                    <flux:button>
-                        Post comment
-                    </flux:button>
-                </form>
             </div>
-        </section>
+        </section> --}}
     </div>
 </x-layouts.app>

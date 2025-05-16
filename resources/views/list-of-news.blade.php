@@ -2,7 +2,6 @@
     $subcategories = [
         (object) ['slug' => 'market', 'name' => 'Market'],
         (object) ['slug' => 'Stock', 'name' => 'Stock'],
-        (object) ['slug' => 'economics', 'name' => 'Economics'],
         (object) ['slug' => 'cryptocurrency', 'name' => 'Cryptocurrency'],
         (object) ['slug' => 'forex', 'name' => 'Forex'],
         (object) ['slug' => 'business', 'name' => 'Business'],
@@ -10,6 +9,13 @@
         (object) ['slug' => 'real-estate', 'name' => 'Real Estate'],
         (object) ['slug' => 'retirement', 'name' => 'Retirement'],
         (object) ['slug' => 'financial-planning', 'name' => 'Financial Planning'],
+        (object) ['slug' => 'taxes', 'name' => 'Taxes'],
+        (object) ['slug' => 'loans', 'name' => 'Loans'],
+        (object) ['slug' => 'credit', 'name' => 'Credit'],
+        (object) ['slug' => 'banking', 'name' => 'Banking'],
+        (object) ['slug' => 'mortgages', 'name' => 'Mortgages'],
+        (object) ['slug' => 'savings', 'name' => 'Savings'],
+        (object) ['slug' => 'debt', 'name' => 'Debt'],
         (object) ['slug' => 'insurance', 'name' => 'Insurance'],
     ];
 @endphp
