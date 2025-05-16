@@ -31,7 +31,7 @@
                 <flux:text class="mb-6" size="lg" variant="subtle">May, 03 2025 at 22.51 PM</flux:text>
 
                 <div class="[&>p]:mb-6">
-                    <p class="text-xl">
+                    <p class="md:text-lg">
                         @foreach (explode("\n", $text) as $paragraph)
                             <span class="block mb-4">{{ $paragraph }}</span>
                         @endforeach
@@ -39,5 +39,25 @@
                 </div>
             </div>
         </div>
+        <flux:separator></flux:separator>
+
+        <section class="py-4 antialiased">
+            <div class="max-w-2xl mx-auto px-4">
+                <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+                </div>
+                <form class="mb-6">
+                    <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg border">
+                        <label for="comment" class="sr-only">Your comment</label>
+                        <textarea id="comment" rows="6"
+                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white"
+                            placeholder="Write a comment..." required></textarea>
+                    </div>
+                    <flux:button>
+                        Post comment
+                    </flux:button>
+                </form>
+            </div>
+        </section>
     </div>
 </x-layouts.app>
