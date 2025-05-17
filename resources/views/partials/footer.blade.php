@@ -1,5 +1,5 @@
 @php
-    $hideFooterRoutes = ['settings.profile', 'settings.password', 'settings.appearance'];
+    $hideFooterRoutes = ['settings'];
     $shouldShowFooter = !in_array(request()->route()->getName(), $hideFooterRoutes);
 
     $categories = ['Politics', 'Economy', 'Technology', 'Science', 'Health', 'Entertainment'];
