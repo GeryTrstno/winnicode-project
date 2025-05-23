@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover {
+            background-color: #333;
+        }
+
+        /* Hero Carousel */
+        .hero-carousel {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .carousel-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .slide-1 {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23333" width="1200" height="500"/><g fill="%23555"><circle cx="300" cy="150" r="50"/><circle cx="600" cy="200" r="40"/><circle cx="900" cy="180" r="35"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">📺 Breaking News Scene</text></svg>');
+        }
+
+        .slide-2 {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23444" width="1200" height="500"/><g fill="%23666"><rect x="100" y="100" width="200" height="150" rx="10"/><rect x="400" y="80" width="150" height="180" rx="10"/><rect x="700" y="120" width="180" height="120" rx="10"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🏛️ Government Summit</text></svg>');
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%232a5934" width="1200" height="500"/><g fill="%234a7c59"><circle cx="200" cy="100" r="60"/><circle cx="500" cy="150" r="45"/><circle cx="800" cy="120" r="50"/><circle cx="1000" cy="180" r="40"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🌍 Climate Action</text></svg>');
+        }
+
+        .slide-content {
+            padding: 3rem;
+            color: white;
+            max-width: 600px;
+        }
+
+        .breaking-news-badge {
+            background: #ff4444;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .slide-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .read-more-btn {
+            background: white;
+            color: #333;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Carousel Controls */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #333;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Trending Section */
+        .trending-section {
+            margin: 3rem 2rem;
+        }
+
+        .trending-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .trending-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .see-more {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .trending-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .trending-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .trending-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-category {
+            color: #666;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .slide-content {
+                padding: 2rem;
+            }
+
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-slide slide-1">
+                <div class="slide-content">
+                    <div class="breaking-news-badge">Breaking News</div>
+                    <h1 class="slide-title">Global Summit Addresses Climate Crisis</h1>
+                    <p class="slide-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non diam sit amet massa aliquet sagittis. Praesent non orci in augue pulvinar molestie ac eu ex...</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2">
+                <div class="slide-content">
+                    <div class="breaking-news-badge">Politics</div>
+                    <h1 class="slide-title">Economic Recovery Plans Unveiled</h1>
+                    <p class="slide-description">Government officials announce comprehensive strategies to boost economic growth and create sustainable employment opportunities across multiple sectors...</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3">
+                <div class="slide-content">
+                    <div class="breaking-news-badge">Environment</div>
+                    <h1 class="slide-title">Green Technology Breakthrough</h1>
+                    <p class="slide-description">Scientists develop revolutionary clean energy solutions that could transform how we power our cities and reduce carbon emissions globally...</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-nav prev" onclick="previousSlide()">‹</button>
+        <button class="carousel-nav next" onclick="nextSlide()">›</button>
+
+        <div class="carousel-dots">
+            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+            <div class="carousel-dot" onclick="goToSlide(1)"></div>
+            <div class="carousel-dot" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const carouselContainer = document.getElementById('carouselContainer');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function updateCarousel() {
+            const translateX = -currentSlide * 100;
+            carouselContainer.style.transform = `translateX(${translateX}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Touch/swipe support
+        let startX = 0;
+        let startY = 0;
+        let isSwipeDetected = false;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isSwipeDetected = false;
+        });
+
+        carouselContainer.addEventListener('touchmove', (e) => {
+            if (!startX || !startY) return;
+
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = startX - currentX;
+            const diffY = startY - currentY;
+
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                isSwipeDetected = true;
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        });
+
+        carouselContainer.addEventListener('touchend', () => {
+            startX = 0;
+            startY = 0;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+    </script>
+</body>
+</html>
