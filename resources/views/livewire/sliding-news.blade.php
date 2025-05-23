@@ -1,39 +1,38 @@
- <style>
-        .carousel-slide {
-            background-size: cover;
-            background-position: center;
-        }
+<style>
+    .carousel-slide {
+        background-size: cover;
+        background-position: center;
+    }
 
-        .slide-1 {
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23333" width="1200" height="500"/><g fill="%23555"><circle cx="300" cy="150" r="50"/><circle cx="600" cy="200" r="40"/><circle cx="900" cy="180" r="35"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">📺 Breaking News Scene</text></svg>');
-        }
+    .slide-1 {
+        background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23333" width="1200" height="500"/><g fill="%23555"><circle cx="300" cy="150" r="50"/><circle cx="600" cy="200" r="40"/><circle cx="900" cy="180" r="35"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">📺 Breaking News Scene</text></svg>');
+    }
 
-        .slide-2 {
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23444" width="1200" height="500"/><g fill="%23666"><rect x="100" y="100" width="200" height="150" rx="10"/><rect x="400" y="80" width="150" height="180" rx="10"/><rect x="700" y="120" width="180" height="120" rx="10"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🏛️ Government Summit</text></svg>');
-        }
+    .slide-2 {
+        background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%23444" width="1200" height="500"/><g fill="%23666"><rect x="100" y="100" width="200" height="150" rx="10"/><rect x="400" y="80" width="150" height="180" rx="10"/><rect x="700" y="120" width="180" height="120" rx="10"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🏛️ Government Summit</text></svg>');
+    }
 
-        .slide-3 {
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%232a5934" width="1200" height="500"/><g fill="%234a7c59"><circle cx="200" cy="100" r="60"/><circle cx="500" cy="150" r="45"/><circle cx="800" cy="120" r="50"/><circle cx="1000" cy="180" r="40"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🌍 Climate Action</text></svg>');
-        }
-    </style>
-
+    .slide-3 {
+        background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect fill="%232a5934" width="1200" height="500"/><g fill="%234a7c59"><circle cx="200" cy="100" r="60"/><circle cx="500" cy="150" r="45"/><circle cx="800" cy="120" r="50"/><circle cx="1000" cy="180" r="40"/></g><text x="50" y="400" fill="white" font-size="24" font-family="Arial">🌍 Climate Action</text></svg>');
+    }
+</style>
 
 <div>
-    <section class="relative aspect-[16/6] overflow-hidden rounded-xl shadow-2xl">
-        <div class="flex h-full transition-transform duration-500 ease-in-out" id="carouselContainer">
+    <section class="relative overflow-hidden rounded-xl shadow-2xl">
+        <div class="flex sm:aspect-[16/9] md:aspect-[16/6] h-full transition-transform duration-500 ease-in-out" id="carouselContainer">
             <!-- Slide 1 -->
             <div class="carousel-slide slide-1 min-w-full flex items-end">
-                <div class="p-12 text-white max-w-2xl">
+                <div class="p-6 sm:p-8 md:p-12 text-white max-w-2xl">
                     <div class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">
                         Breaking News
                     </div>
-                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4">
                         Global Summit Addresses Climate Crisis
                     </h1>
-                    <p class="text-lg mb-8 opacity-90 leading-relaxed">
+                    <p class="text-base sm:text-lg md:text-xl mb-8 opacity-90 leading-relaxed">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non diam sit amet massa aliquet sagittis. Praesent non orci in augue pulvinar molestie ac eu ex...
                     </p>
                     <button class="bg-white text-gray-800 px-8 py-3 rounded-full font-bold hover:transform hover:-translate-y-1 transition-all duration-200">
@@ -44,14 +43,14 @@
 
             <!-- Slide 2 -->
             <div class="carousel-slide slide-2 min-w-full flex items-end">
-                <div class="p-12 text-white max-w-2xl">
+                <div class="p-6 sm:p-8 md:p-12 text-white max-w-2xl">
                     <div class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">
                         Politics
                     </div>
-                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4">
                         Economic Recovery Plans Unveiled
                     </h1>
-                    <p class="text-lg mb-8 opacity-90 leading-relaxed">
+                    <p class="text-base sm:text-lg md:text-xl mb-8 opacity-90 leading-relaxed">
                         Government officials announce comprehensive strategies to boost economic growth and create sustainable employment opportunities across multiple sectors...
                     </p>
                     <button class="bg-white text-gray-800 px-8 py-3 rounded-full font-bold hover:transform hover:-translate-y-1 transition-all duration-200">
@@ -62,14 +61,14 @@
 
             <!-- Slide 3 -->
             <div class="carousel-slide slide-3 min-w-full flex items-end">
-                <div class="p-12 text-white max-w-2xl">
+                <div class="p-6 sm:p-8 md:p-12 text-white max-w-2xl">
                     <div class="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">
                         Environment
                     </div>
-                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4">
                         Green Technology Breakthrough
                     </h1>
-                    <p class="text-lg mb-8 opacity-90 leading-relaxed">
+                    <p class="text-base sm:text-lg md:text-xl mb-8 opacity-90 leading-relaxed">
                         Scientists develop revolutionary clean energy solutions that could transform how we power our cities and reduce carbon emissions globally...
                     </p>
                     <button class="bg-white text-gray-800 px-8 py-3 rounded-full font-bold hover:transform hover:-translate-y-1 transition-all duration-200">
@@ -97,7 +96,7 @@
         </div>
     </section>
 
-     <script>
+    <script>
         let currentSlide = 0;
         const totalSlides = 3;
         const carouselContainer = document.getElementById('carouselContainer');

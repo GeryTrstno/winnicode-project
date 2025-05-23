@@ -8,7 +8,7 @@
             <flux:link href="{{ route('news') }}" variant="subtle">See more</flux:link>
         </div>
 
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3 lg:grid-cols-2">
+        <div class="grid auto-rows-min gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             @for ($i = 0; $i < 3; $i++)
                 <div class="relative aspect-square overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 grid grid-rows-2">
                     <!-- Bagian Atas: Gambar -->
@@ -18,14 +18,14 @@
 
                     <!-- Bagian Bawah: Tulisan -->
                     <div class="row-span-1 p-4">
-                        <flux:button  size="xs">Technology</flux:button>
-                        <h1 class="md:text-xl font-bold mt-3">New Smartphone Features Unveiled at Tech Conferences</h1>
-                        <p class="text-zinc-300 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non nunc ac nulla semper imperdiet eu quis dui. Aenean porta sapien pharetra sodales sed.</p>
-
+                        <flux:button size="xs">Technology</flux:button>
+                        <h1 class="text-lg sm:text-xl md:text-2xl font-bold mt-3">New Smartphone Features Unveiled at Tech Conferences</h1>
+                        <p class="text-zinc-300 text-xs sm:text-sm md:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non nunc ac nulla semper imperdiet eu quis dui. Aenean porta sapien pharetra sodales sed. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed distinctio dicta, molestias dolores a magni ex impedit dolor, repellat quaerat, harum aspernatur architecto neque. Consequuntur, nostrum. Deserunt ab perspiciatis tempore.</p>
                     </div>
                 </div>
             @endfor
         </div>
+
 
         <flux:spacer></flux:spacer>
 
