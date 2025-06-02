@@ -11,5 +11,7 @@
         @include('partials.footer')
 
         @fluxScripts
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@1.4.4/dist/flowbite.min.js"></script>
+
     </body>
 </html>

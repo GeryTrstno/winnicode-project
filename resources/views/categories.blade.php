@@ -1,3 +1,12 @@
-<div>
-    <!-- Smile, breathe, and go slowly. - Thich Nhat Hanh -->
-</div>
+<x-layouts.app :title="__('Categories')">
+   <div></div>
+</x-layouts.app>
+
+
+
+
+
+
+
+
+
