@@ -8,7 +8,7 @@
 
             <!-- Bagian Bawah: Tulisan -->
             <div class="row-span-1 p-4">
-                <flux:button size="sm">Technology</flux:button>
+                <flux:button size="xs">Technology</flux:button>
                 <h1 class="text-sm sm:text-lg md:text-xl font-bold mt-3">New Smartphone Features Unveiled at Tech Conferences</h1>
                 <p class=" text-zinc-800 dark:text-zinc-300 text-xs sm:text-xs md:text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non nunc ac nulla semper imperdiet eu quis dui. Aenean porta sapien pharetra sodales sed.</p>
             </div>
