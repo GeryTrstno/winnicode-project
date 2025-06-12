@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
+    <body class="min-h-screen bg-[#F5F5F5] dark:bg-zinc-800">
         @include('partials.navigation')
 
         {{ $slot }}
@@ -15,3 +15,5 @@
 
     </body>
 </html>
+
+
