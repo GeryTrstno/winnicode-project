@@ -24,7 +24,7 @@ test('password can be confirmed', function () {
 
     $response
         ->assertHasNoErrors()
-        ->assertRedirect(route('categories', absolute: false));
+        ->assertRedirect(route('dashboard', absolute: false));
 });
 
 test('password is not confirmed with invalid password', function () {
