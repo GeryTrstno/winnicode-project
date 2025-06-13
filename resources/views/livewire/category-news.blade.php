@@ -1,7 +1,7 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
     <div class="flex flex-row gap-2 flex-wrap">
         @for ($i = 0; $i < 6; $i++)
-            <flux:button href="{{ route('categories') }}" variant="filled">Economy</flux:button>
+            <button type="button" class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">Technology</button>
         @endfor
     </div>
 
@@ -13,7 +13,7 @@
                         <img class="h-full w-full object-cover" src="images/conference.jpg" alt="">
                     </div>
                     <div class="w-2/3 p-4">
-                        <button type="button" class="px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">Technology</button>
+                        <button type="button" class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">Technology</button>
                         <h1 class="text-sm sm:text-lg md:text-xl font-bold mt-1 sm:mt-2">New Smartphone Features Unveiled at Tech Conferences</h1>
                         <p class="text-xs sm:text-xs md:text-sm">
                             <span class="block md:hidden">Lorem ipsum dolor sit amet...</span>
