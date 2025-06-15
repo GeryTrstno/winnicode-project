@@ -2,13 +2,22 @@
 
 namespace App\Livewire;
 
+use App\Models\News;
 use Livewire\Component;
 
 class NewsFeed extends Component
 {
+
     public $itemcount = 16;
-    public $totalItems = 80;
+    public $totalItems;
+    public $news;
     public $hasMorePages = true;
+
+
+    public function mount()
+    {
+        $this->totalItems = News::count();
+    }
 
     public function loadMore()
     {
@@ -22,6 +31,11 @@ class NewsFeed extends Component
 
     public function render()
     {
-        return view('livewire.news-feed');
+        $this->news = News::with('categories')->latest()->take($this->itemcount)->get();
+
+        return view('livewire.news-feed', [
+            'news' => $this->news,
+            'hasMorePages' => $this->hasMorePages,
+        ]);
     }
 }

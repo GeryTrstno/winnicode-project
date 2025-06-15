@@ -18,14 +18,6 @@ class AllSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(5)->create();
-
-        SubCategory::factory(10)->recycle(Category::all()->random(5))->create();
-
-        User::factory(10)->create();
-
-        News::factory(50)->recycle(User::all()->random(10))->create();
-
         CategoryNews::factory(60)->recycle([News::all()->random(50), Category::all()->random(5)])->create();
 
         SubCategoryNews::factory(100)->recycle([News::all()->random(50), SubCategory::all()->random(10)])->create();

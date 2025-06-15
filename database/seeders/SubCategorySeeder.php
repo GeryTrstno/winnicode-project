@@ -13,6 +13,60 @@ class SubCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        SubCategory::factory(10)->create();
+        SubCategory::create([
+            'name' => 'AI',
+            'slug' => 'ai',
+            'category_id' => 1,
+        ]);
+        SubCategory::create([
+            'name' => 'Cyber Security',
+            'slug' => 'cyber-security',
+            'category_id' => 1,
+        ]);
+        SubCategory::create([
+            'name' => 'Cloud Computing',
+            'slug' => 'cloud-computing',
+            'category_id' => 1,
+        ]);
+        SubCategory::create([
+            'name' => 'United Kingdom',
+            'slug' => 'united-kingdom',
+            'category_id' => 2,
+        ]);
+        SubCategory::create([
+            'name' => 'United States',
+            'slug' => 'united-states',
+            'category_id' => 2,
+        ]);
+        SubCategory::create([
+            'name' => 'UI/UX Design',
+            'slug' => 'ui-ux-design',
+            'category_id' => 5,
+        ]);
+        SubCategory::create([
+            'name' => 'Sport',
+            'slug' => 'sport',
+            'category_id' => 5,
+        ]);
+        SubCategory::create([
+            'name' => 'Accounting',
+            'slug' => 'accounting',
+            'category_id' => 4,
+        ]);
+        SubCategory::create([
+            'name' => 'CryptoCurrency',
+            'slug' => 'crypto-currency',
+            'category_id' => 4,
+        ]);
+         SubCategory::create([
+            'name' => 'Hospital',
+            'slug' => 'hospital',
+            'category_id' => 3,
+        ]);
+        SubCategory::create([
+            'name' => 'Food',
+            'slug' => 'food',
+            'category_id' => 3,
+        ]);
     }
 }
