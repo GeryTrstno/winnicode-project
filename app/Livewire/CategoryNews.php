@@ -12,8 +12,6 @@ class CategoryNews extends Component
 
     public function render()
     {
-        $this->news = News
-
         return view('livewire.category-news');
     }
 }
