@@ -1,8 +1,6 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <livewire:sliding-news></livewire:sliding-news>
-        {{-- <livewire:sliding-news-v2></livewire:sliding-news-v2> --}}
-
 
         <flux:spacer></flux:spacer>
         <div class="flex flex-row items-center justify-between">

@@ -108,12 +108,12 @@
                     @else
                         <flux:spacer></flux:spacer>
 
-                        <flux:button :href="route('login')" wire:navigate>
+                        <flux:button class="text-white! bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-neutral-200!" :href="route('login')" wire:navigate>
                             {{ __('Login') }}
                         </flux:button>
 
                         @if (Route::has('register'))
-                            <flux:button class="ml-2" :href="route('register')" wire:navigate>
+                            <flux:button class="ml-2 text-white! bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-neutral-200!" :href="route('register')" wire:navigate>
                                 {{ __('Register') }}
                             </flux:button>
                     @endif
@@ -175,14 +175,14 @@
                                             </flux:dropdown>
                                         @else
                                             <flux:spacer></flux:spacer>
-                                            <flux:button size="sm" :href="route('login')" wire:navigate>
+                                            <flux:button class="text-white! bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800" :href="route('login')" wire:navigate>
                                                 {{ __('Login') }}
                                             </flux:button>
 
-                                        @if (Route::has('register'))
-                                            <flux:button size="sm" :href="route('register')" wire:navigate>
-                                                {{ __('Register') }}
-                                            </flux:button>
+                                            @if (Route::has('register'))
+                                                <flux:button class="text-white! bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800" :href="route('register')" wire:navigate>
+                                                    {{ __('Register') }}
+                                                </flux:button>
                                         @endif
                                         @endauth
                                     </nav>

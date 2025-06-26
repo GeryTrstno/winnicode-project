@@ -5,7 +5,7 @@
                 <img class="h-1/2" src="images/poto-dummy.png" alt="">
                 <div class="row-span-1 p-2 ml-2 mr-2">
                     @foreach ($item->categories as $category)
-                        <button type="button" class="mt-2 mr-1 px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
+                        <button type="button" class="mt-2 mr-1 px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-neutral-200!">
                             {{ $category->name }}
                         </button>
                     @endforeach
@@ -18,7 +18,7 @@
 
     @if ($hasMorePages)
         <div class="flex flex-col justify-center items-center mt-4">
-            <flux:button wire:click="loadMore" wire:loading.attr="disabled" wire:target="loadMore">
+            <flux:button wire:click="loadMore" class="text-white! bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-neutral-200!" wire:loading.attr="disabled" wire:target="loadMore">
                 Load More
             </flux:button>
         </div>

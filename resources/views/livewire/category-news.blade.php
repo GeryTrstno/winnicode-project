@@ -1,28 +1,45 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
     <div class="flex flex-row gap-2 flex-wrap">
-        @for ($i = 0; $i < 6; $i++)
-            <button type="button" class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">Technology</button>
-        @endfor
+        @foreach ($categories as $category)
+            <button  wire:click="selectCategory({{ $category->id }})" type="button" class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-2 focus:outline-none focus:ring-neutral-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-zinc-500!">
+                {{ $category->name }}
+            </button>
+        @endforeach
     </div>
 
-    <div class="grid auto-rows-min gap-5 md:grid-cols-2">
-        @for ($i = 0; $i < 6; $i++)
-            <div class="relative aspect-[18/6] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-                <div class="flex h-full">
-                    <div class=" w-1/3 relative">
-                        <img class="h-full w-full object-cover" src="images/conference.jpg" alt="">
-                    </div>
-                    <div class="w-2/3 p-4">
-                        <h1 class="text-sm sm:text-lg md:text-xl font-bold">New Smartphone Features Unveiled at Tech Conferences</h1>
-                        <p class="text-xs sm:text-xs md:text-sm">
-                            <span class="block md:hidden">Lorem ipsum dolor sit amet...</span>
-                            <span class="hidden md:block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non nunc ac nulla semper imperdiet eu quis dui. Aenean porta sapien pharetra sodales sed.</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @if($this->selectedNews && $this->selectedNews->count() > 0)
+            @foreach ($this->selectedNews as $news)
+                <div class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    @if($news->image)
+                        <img src="images/conference.jpg"
+                            alt="{{ $news->title }}"
+                            class="w-full h-48 object-cover">
+                    @else
+                        <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+                            <span class="text-gray-500">No Image</span>
+                        </div>
+                    @endif
+
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">
+                            {{ $news->title }}
+                        </h3>
+
+                        <p class="text-xs sm:text-xs md:text-sm mb-3 text-zinc-800 dark:text-zinc-300">
+                            {{ $news->excerpt ?? Str::limit(strip_tags($news->content), 120) }}
                         </p>
+
+                        <div class="flex justify-between items-center text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                            <span>{{ $news->created_at->format('M d, Y') }}</span>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        @endfor
+            @endforeach
+        @endif
     </div>
 </div>
+
+
 
