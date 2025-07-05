@@ -41,9 +41,9 @@
                             {{ __('Home') }}
                         </flux:navbar.item>
 
-                        <flux:navbar.item icon="book-open-text" :href="route('news')" :current="request()->routeIs('news')" wire:navigate>
+                        {{-- <flux:navbar.item icon="book-open-text" :href="route('news')" :current="request()->routeIs('news')" wire:navigate>
                             {{ __('News') }}
-                        </flux:navbar.item>
+                        </flux:navbar.item> --}}
 
                         <flux:navbar.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('about-us')" wire:navigate>
                             {{ __('About Us') }}
@@ -210,9 +210,9 @@
                     {{ __('Home') }}
                     </flux:navlist.item>
 
-                    <flux:navlist.item icon="book-open-text" :href="route('news')" :current="request()->routeIs('news')" wire:navigate>
+                    {{-- <flux:navlist.item icon="book-open-text" :href="route('news')" :current="request()->routeIs('news')" wire:navigate>
                     {{ __('News') }}
-                    </flux:navlist.item>
+                    </flux:navlist.item> --}}
 
                     <flux:navlist.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('abous-us')" wire:navigate>
                     {{ __('About Us') }}
