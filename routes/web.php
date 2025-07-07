@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -7,9 +9,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::view('categories', 'categories')
+Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
+    ->where('category', '[A-Za-z0-9\-]+')
     ->middleware(['auth', 'verified'])
-    ->name('categories');
+    ->name('category');
 
 Route::view('list-of-news', 'list-of-news')
     ->middleware(['auth', 'verified'])

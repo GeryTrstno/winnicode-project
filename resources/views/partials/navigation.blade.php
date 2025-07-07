@@ -22,12 +22,9 @@
                 {{ __('Categories') }}
             </flux:navbar.item>
             <flux:navmenu>
-                <flux:navmenu.item href="{{ route('list-of-news') }}">Economy</flux:navmenu.item>
-                <flux:navmenu.item href="{{ route('news') }}">Technology</flux:navmenu.item>
-                <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
-                <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
-                <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
-                <flux:navmenu.item href="{{ route('news') }}">Fashion</flux:navmenu.item>
+                @foreach ($categories as $category)
+                    <flux:navmenu.item :href="route('category', $category->slug)">{{ $category->name }}</flux:navmenu.item>
+                @endforeach
             </flux:navmenu>
         </flux:dropdown>
         </div>
@@ -214,7 +211,7 @@
                     {{ __('News') }}
                     </flux:navlist.item> --}}
 
-                    <flux:navlist.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('abous-us')" wire:navigate>
+                    <flux:navlist.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('about-us')" wire:navigate>
                     {{ __('About Us') }}
                     </flux:navlist.item>
 
@@ -225,25 +222,9 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Categories')">
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('news')" wire:navigate>
-                    {{ __('Economics') }}
-                    </flux:navlist.item>
+                    @foreach ($categories as $category)
+                        <flux:navmenu.item href="/categories/{{ $category->slug }}">{{ $category->name }}</flux:navmenu.item>
+                    @endforeach
                 </flux:navlist.group>
-
             </flux:navlist>
         </flux:sidebar>

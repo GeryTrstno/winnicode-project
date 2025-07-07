@@ -37,7 +37,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // Jika ada relasi subcategories, bisa gunakan: $category->subcategories
+        return view('categories', [
+            'category' => $category,
+            // 'subcategories' => $category->subcategories ?? [],
+        ]);
     }
 
     /**
