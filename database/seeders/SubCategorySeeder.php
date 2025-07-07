@@ -41,12 +41,12 @@ class SubCategorySeeder extends Seeder
         SubCategory::create([
             'name' => 'UI/UX Design',
             'slug' => 'ui-ux-design',
-            'category_id' => 5,
+            'category_id' => 6,
         ]);
         SubCategory::create([
             'name' => 'Sport',
             'slug' => 'sport',
-            'category_id' => 5,
+            'category_id' => 6,
         ]);
         SubCategory::create([
             'name' => 'Accounting',
@@ -67,6 +67,16 @@ class SubCategorySeeder extends Seeder
             'name' => 'Food',
             'slug' => 'food',
             'category_id' => 3,
+        ]);
+        SubCategory::create([
+            'name' => 'National',
+            'slug' => 'national-history',
+            'category_id' => 5,
+        ]);
+        SubCategory::create([
+            'name' => 'Event',
+            'slug' => 'event-history',
+            'category_id' => 5,
         ]);
     }
 }

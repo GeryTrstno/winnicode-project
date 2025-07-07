@@ -12,11 +12,16 @@ class NewsFeed extends Component
     public $totalItems;
     public $news;
     public $hasMorePages = true;
+    public $categoryId;
 
-
-    public function mount()
+    public function mount($categoryId = null)
     {
-        $this->totalItems = News::count();
+        $this->categoryId = $categoryId;
+        $this->totalItems = $categoryId
+            ? News::whereHas('categories', function($q) {
+                $q->where('categories.id', $this->categoryId);
+            })->count()
+            : News::count();
     }
 
     public function loadMore()
@@ -31,7 +36,15 @@ class NewsFeed extends Component
 
     public function render()
     {
-        $this->news = News::with('categories')->latest()->take($this->itemcount)->get();
+        $query = News::with('categories')->latest();
+
+        if ($this->categoryId) {
+            $query->whereHas('categories', function($q) {
+                $q->where('categories.id', $this->categoryId);
+            });
+        }
+
+        $this->news = $query->take($this->itemcount)->get();
 
         return view('livewire.news-feed', [
             'news' => $this->news,
