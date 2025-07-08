@@ -23,7 +23,7 @@ class SubCategoryNewsFactory extends Factory
     {
         return [
             'news_id' => News::factory(),
-            'sub_category_id' => SubCategory::factory(),
+            'subcategory_id' => SubCategory::factory(),
         ];
     }
 }

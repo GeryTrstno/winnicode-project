@@ -13,7 +13,7 @@ class Category extends Model
     public function news() {
         return $this->belongsToMany(News::class, 'category_news', 'category_id', 'news_id');
     }
-    public function sub_categories() {
+    public function subcategories() {
         return $this->hasMany(SubCategory::class, 'category_id');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
 use App\Models\SubCategory;
+use App\Models\Category;
 
 class SubCategoryController extends Controller
 {
@@ -35,15 +36,19 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SubCategory $subCategory)
+    public function show(Category $category, SubCategory $subcategory)
     {
-        //
+
+        return view('subcategories', [
+            'subcategory' => $subcategory,
+            'category' => $category
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SubCategory $subCategory)
+    public function edit(SubCategory $subcategory)
     {
         //
     }
@@ -51,7 +56,7 @@ class SubCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSubCategoryRequest $request, SubCategory $subCategory)
+    public function update(UpdateSubCategoryRequest $request, SubCategory $subcategory)
     {
         //
     }

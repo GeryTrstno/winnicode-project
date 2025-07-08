@@ -38,8 +38,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $news = $category->news; // relasi news
-        $subcategories = $category->sub_categories; // relasi sub_category
-
+        $subcategories = $category->subcategories; // relasi subcategory
+        // dd($category, $news, $subcategories); // Uncomment for debugging
         return view('categories', [
             'category' => $category,
             'subcategories' => $subcategories,

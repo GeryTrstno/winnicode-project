@@ -12,7 +12,7 @@ class SubCategory extends Model
 
     public function news()
     {
-        return $this->belongsToMany(News::class, 'sub_category_news', 'sub_category_id', 'news_id');
+        return $this->belongsToMany(News::class, 'subcategory_news', 'subcategory_id', 'news_id');
     }
     public function categories()
     {

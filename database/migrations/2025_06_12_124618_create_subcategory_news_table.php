@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_category_news', function (Blueprint $table) {
+        Schema::create('subcategory_news', function (Blueprint $table) {
             $table->id();
             $table->foreignId('news_id')
                 ->constrained('news')
                 ->onDelete('cascade');
-            $table->foreignId('sub_category_id')
-                ->constrained('sub_categories')
+            $table->foreignId('subcategory_id')
+                ->constrained('subcategories')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_category_news');
+        Schema::dropIfExists('subcategory_news');
     }
 };

@@ -28,12 +28,16 @@ class CategoryNews extends Component
     public function getSelectedNewsProperty()
     {
         if (!$this->selectedCategoryId) {
-            return collect();
+            return collect();  // Kembalikan koleksi kosong jika tidak ada kategori yang dipilih
         }
 
+        // Cari kategori berdasarkan ID yang dipilih
         $category = $this->categories->find($this->selectedCategoryId);
+
+        // Ambil berita untuk kategori tersebut
         return $category ? $category->news->shuffle()->take(6) : collect();
     }
+
 
     public function render()
     {

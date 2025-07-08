@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Models\Category;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -10,9 +10,16 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
-    ->where('category', '[A-Za-z0-9\-]+')
     ->middleware(['auth', 'verified'])
     ->name('category');
+
+Route::get('categories/{category:slug}/subcategories/{subcategory:slug}', [SubCategoryController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('subcategory');
+
+// Route::get('subcategories/{subcategory:slug}', [SubCategoryController::class, 'show'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('subcategory');
 
 Route::view('list-of-news', 'list-of-news')
     ->middleware(['auth', 'verified'])
