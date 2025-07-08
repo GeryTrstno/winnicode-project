@@ -10,6 +10,8 @@ class SubCategory extends Model
     /** @use HasFactory<\Database\Factories\SubCategoryFactory> */
     use HasFactory;
 
+    protected $table = 'subcategories';
+
     public function news()
     {
         return $this->belongsToMany(News::class, 'subcategory_news', 'subcategory_id', 'news_id');
