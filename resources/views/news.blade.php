@@ -20,7 +20,7 @@
         </div>
         <div class="flex justify-center w-full">
             <div class="relative w-full md:w-2/3 rounded-xl">
-                <flux:button class="mb-4" href="{{ route('categories') }}" variant="primary">Economy</flux:button>
+                <flux:button class="mb-4" href="{{ route('category', ['category' => 'economy']) }}" variant="primary">Economy</flux:button>
                 <h2 class="text-4xl font-bold">News Smartphone Features Unveiled at Tech Conferences</h2>
                 <p class="mb-4 font-semibold text-2xl text-zinc-600 dark:text-zinc-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi natus quo pariatur voluptate doloremque ipsam, blanditiis enim deserunt accusantium aperiam harum fugiat adipisci, recusandae quasi dicta nisi nostrum odit aspernatur!</p>
                 <flux:text class="mb-2" size="lg">

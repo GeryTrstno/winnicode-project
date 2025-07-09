@@ -14,7 +14,7 @@ class SubCategorySeeder extends Seeder
     public function run(): void
     {
         SubCategory::create([
-            'name' => 'AI',
+            'name' => 'Artificial Intelligence',
             'slug' => 'ai',
             'category_id' => 1,
         ]);

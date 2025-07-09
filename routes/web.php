@@ -17,13 +17,13 @@ Route::get('categories/{category:slug}/subcategories/{subcategory:slug}', [SubCa
     ->middleware(['auth', 'verified'])
     ->name('subcategory');
 
-// Route::get('subcategories/{subcategory:slug}', [SubCategoryController::class, 'show'])
-//     ->middleware(['auth', 'verified'])
-//     ->name('subcategory');
-
-Route::view('list-of-news', 'list-of-news')
+Route::get('news/{news:sslug}',[NewsController::class, 'show'])
     ->middleware(['auth', 'verified'])
-    ->name('list-of-news');
+    ->name('news');
+
+// Route::view('list-of-news', 'list-of-news')
+//     ->middleware(['auth', 'verified'])
+//     ->name('list-of-news');
 
 Route::view('news', 'news')
     ->middleware(['auth', 'verified'])
