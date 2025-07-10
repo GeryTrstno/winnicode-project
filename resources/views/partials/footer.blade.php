@@ -21,14 +21,13 @@
             <div>
                 <flux:heading size="lg" class="mb-4">Categories</flux:heading>
                 <div class="space-y-2">
-                    @foreach ($categories as $category)
+                    {{-- @foreach ($categories as $category)
                         <div>
                             <a href="{{ route('category', ['slug' => $category->slug]) }}">
                                 <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $category->name }}</flux:text>
                             </a>
                         </div>
-
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
 

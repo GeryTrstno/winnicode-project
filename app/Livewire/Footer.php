@@ -37,6 +37,7 @@ class Footer extends Component
         // Fetch categories from the database
         $this->categories = Category::all();
 
+
         // Return the view with all the necessary data
         return view('partials.footer', [
             'categories' => $this->categories,
