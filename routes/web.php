@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use App\Models\News;
 use Livewire\Component;
 
 class Navigation extends Component

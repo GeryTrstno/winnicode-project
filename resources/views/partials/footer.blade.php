@@ -1,25 +1,4 @@
-@php
-    $hideFooterRoutes = ['settings'];
-    $shouldShowFooter = !in_array(request()->route()->getName(), $hideFooterRoutes);
-
-    $categories = ['Politics', 'Economy', 'Technology', 'Science', 'Health', 'Entertainment'];
-
-    $quickLinks = [
-        ['name' => 'Dashboard', 'route' => 'home'],
-        ['name' => 'News', 'route' => 'news'],
-        ['name' => 'About Us', 'route' => 'about-us'],
-        ['name' => 'Profile', 'route' => 'settings.profile'],
-    ];
-
-    $policies = [
-        ['name' => 'Privacy Policy', 'path' => '/privacy-policy'],
-        ['name' => 'Terms of Services', 'path' => '/terms'],
-        ['name' => 'Cookies Policy', 'path' => '/cookies'],
-    ];
-@endphp
-
-@if($shouldShowFooter)
-    <flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+<flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <div class="relative overflow-hidden rounded-xl p-4 sm:p-6 md:p-8">
             <flux:heading class="text-center" size="xl">Stay Updated</flux:heading>
             <flux:text class="text-center mt-2" size="xl">Subscribe to our newsletter to receive the latest news directly in your inbox.</flux:text>
@@ -42,10 +21,13 @@
             <div>
                 <flux:heading size="lg" class="mb-4">Categories</flux:heading>
                 <div class="space-y-2">
-                    @foreach($categories as $category)
+                    @foreach ($categories as $category)
                         <div>
-                            <flux:text>{{ $category }}</flux:text>
+                            <a href="{{ route('category', ['slug' => $category->slug]) }}">
+                                <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $category->name }}</flux:text>
+                            </a>
                         </div>
+
                     @endforeach
                 </div>
             </div>
@@ -97,5 +79,5 @@
                 @endforeach
             </div>
         </div>
-    </flux:footer>
-@endif
+</flux:footer>
+
