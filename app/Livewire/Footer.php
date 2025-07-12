@@ -39,7 +39,7 @@ class Footer extends Component
 
 
         // Return the view with all the necessary data
-        return view('partials.footer', [
+        return view('livewire.footer', [
             'categories' => $this->categories,
             'quickLinks' => $this->quickLinks,
             'policies' => $this->policies,

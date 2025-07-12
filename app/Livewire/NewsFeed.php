@@ -59,11 +59,18 @@ class NewsFeed extends Component
             });
         }
 
+        // Ambil berita dengan batasan itemcount
         $this->news = $query->take($this->itemcount)->get();
+
+        // Mengecek jika jumlah berita lebih sedikit dari itemcount
+        if ($this->news->count() < $this->itemcount) {
+            $this->hasMorePages = false; // Jika jumlah berita kurang dari itemcount, tidak ada halaman lagi
+        }
 
         return view('livewire.news-feed', [
             'news' => $this->news,
             'hasMorePages' => $this->hasMorePages,
         ]);
     }
+
 }
