@@ -10,7 +10,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @if($this->selectedNews && $this->selectedNews->count() > 0)
             @foreach ($this->selectedNews as $news)
-                <div class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <a href="{{ route('news', $news->slug) }}" class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg hover:scale-102 transition-all duration-300 ease-in-out">
                     @if($news->image)
                         <img src="images/conference.jpg" alt="{{ $news->title }}" class="w-full h-48 object-cover">
                     @else
@@ -32,7 +32,8 @@
                             <span>{{ $news->created_at->format('M d, Y') }}</span>
                         </div>
                     </div>
-                </div>
+                </a>
+
             @endforeach
         @else
             <p class="text-center text-gray-500">No news available for this category.</p>

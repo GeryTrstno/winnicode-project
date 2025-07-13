@@ -5,7 +5,7 @@
         <flux:spacer></flux:spacer>
         <div class="flex flex-row items-center justify-between">
             <flux:heading class="text-xl">Trending Now</flux:heading>
-            <flux:link href="{{ route('news') }}" variant="subtle">See more</flux:link>
+            {{-- <flux:link href="{{ route('news') }}" variant="subtle">See more</flux:link> --}}
         </div>
 
         <livewire:trending-news></livewire:trending-news>

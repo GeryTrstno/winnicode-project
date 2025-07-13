@@ -1,7 +1,7 @@
 <div>
     <div class="grid grid-cols-2 auto-rows-min gap-5 md:grid-cols-4">
         @foreach ($news as $item)
-            <div class="relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+            <a href="{{ route('news', $item->slug) }}" class="hover:scale-102 relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg transform transition-all duration-300 ease-in-out">
                 <img class="h-1/2" src="{{ asset('images/poto-dummy.png') }}" alt="">
                 <div class="row-span-1 p-2 ml-2 mr-2">
                     @foreach ($item->categories as $category)
@@ -12,7 +12,7 @@
                     <h1 class="text-sm sm:text-lg md:text-lg font-bold mt-3">{{ Str::limit($item->title, 35, '...') }}</h1>
                     <p class="absolute-0 text-zinc-800 dark:text-zinc-300 text-xs sm:text-xs md:text-sm">{{ Str::limit($item->content, 100, '...') }}</p>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
 

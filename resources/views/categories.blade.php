@@ -28,7 +28,7 @@
                     </div>
                     <div class="relative mt-4">
                         <h2 class="text-4xl font-bold">{{ $randomNews->title }}</h2>
-                        <p class="mt-3 text-zinc-600 dark:text-zinc-400 text-lg">{{ $randomNews->content }}</p>
+                        <p class="mt-3 text-zinc-600 dark:text-zinc-400 text-lg">{{ $randomNews->caption }}</p>
                     </div>
                 @endif
             </div>
