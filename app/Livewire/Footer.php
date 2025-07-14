@@ -22,7 +22,7 @@ class Footer extends Component
         $this->quickLinks = [
             ['name' => 'Dashboard', 'route' => 'home'],
             ['name' => 'About Us', 'route' => 'about-us'],
-            ['name' => 'Profile', 'route' => 'settings.profile'],
+            ['name' => 'Profile', 'route' => 'profile'],
         ];
 
         $this->policies = [
