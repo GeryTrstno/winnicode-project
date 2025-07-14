@@ -34,8 +34,11 @@ php artisan key:generate
 ```
 ### 4. Buat file Database
 ```bash
-# Membuat file database.sqlite di folder database
+# Membuat file database.sqlite di folder database (Jika menggunakan Linux)
 touch /database/database.sqlite
+
+# Membuat file database.sqlite di folder database (Jika menggunakan Windows)
+echo > database/database.sqlite
 
 #Migrasi database.sqlite
 php artisan migrate
