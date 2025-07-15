@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -34,7 +35,7 @@ Route::view('about-us', 'about-us')
     ->middleware(['auth', 'verified'])
     ->name('about-us');
 
-Route::view(('profile'), 'profile')
+Route::get('profile/{user}', [UserController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('profile');
 

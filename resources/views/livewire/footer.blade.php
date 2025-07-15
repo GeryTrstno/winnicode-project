@@ -31,16 +31,22 @@
                 </div>
             </div>
 
+
             <div>
                 <flux:heading size="lg" class="mb-4">Quick Links</flux:heading>
                 <div class="space-y-2">
                     @foreach($quickLinks as $link)
-                        <div>
-                            <a href="{{ route($link['route']) }}">
-                                <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $link['name'] }}</flux:text>
-                            </a>
-                        </div>
+                            <div>
+                                <a href="{{ route($link['route']) }}">
+                                    <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $link['name'] }}</flux:text>
+                                </a>
+                            </div>
                     @endforeach
+                    @auth
+                        <a href="{{ route('profile', ['user' => auth()->user()->username ?? 'user' . auth()->user()->id]) }}">
+                            <flux:text class="hover:text-zinc-800 dark:hover:text-white">Profile</flux:text>
+                        </a>
+                    @endauth
                 </div>
             </div>
 

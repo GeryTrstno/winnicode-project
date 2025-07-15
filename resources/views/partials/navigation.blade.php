@@ -74,7 +74,7 @@
                                             <flux:menu.separator />
 
                                             <flux:menu.radio.group>
-                                                <flux:menu.item :href="route('profile')" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item>
+                                                <flux:menu.item href="{{ route('profile', auth()->user()->username ?? 'user' . auth()->user()->id) }}" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item>
                                             </flux:menu.radio.group>
 
                                             <flux:menu.separator />
@@ -151,7 +151,7 @@
                                                 <flux:menu.separator />
 
                                                 <flux:menu.radio.group>
-                                                    <flux:menu.item :href="route('profile')" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item>
+                                                    {{-- <flux:menu.item :href="{{ route('profile', ['user' => auth()->user()->username ?? 'user' . auth()->user()->id]) }}" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item> --}}
                                                 </flux:menu.radio.group>
 
                                                 <flux:menu.separator />

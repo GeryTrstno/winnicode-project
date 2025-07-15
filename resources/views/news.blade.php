@@ -19,7 +19,7 @@
                     {{-- @foreach ($authors as $index => $author)
                         <flux:link href="#" >{{ $author }}</flux:link>@if ($index < $totalAuthors - 2), @elseif ($index == $totalAuthors - 2) and @endif
                     @endforeach --}}
-                    <flux:link href="#" >{{ $news->users->name }}</flux:link>
+                    <flux:link href="{{ route('profile', $news->users->username ?? 'user' . $news->users->id) }}" >{{ $news->users->name }}</flux:link>
                 </flux:text>
                 <flux:text class="mb-6" size="lg" variant="subtle">
                     {{-- May, 03 2025 at 22.51 PM --}}
