@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->string('location')->nullable();
             $table->string('company')->nullable();
-            $table->unsignedBigInteger('followers')->default(0);
-            $table->unsignedBigInteger('following')->default(0);
             $table->text('bio')->nullable();
             $table->string('image')->nullable();
+            $table->integer('followers')->default(0);
+            $table->integer('following')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  // Foreign key constraint
         });
+
     }
 
     /**
