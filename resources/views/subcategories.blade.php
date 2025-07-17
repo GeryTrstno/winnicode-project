@@ -1,4 +1,4 @@
-<x-layouts.app :title="'SubCategories - ' . $subcategory->name">
+<x-layouts.app :title="'Sub Categories - ' . $subcategory->name">
     <flux:heading class="mb-3" size="xl">{{ $subcategory->name }}</flux:heading>
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 

@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('News')">
+<x-layouts.app :title="'News - ' . $news->title">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
             <img src="images/news2.jpeg" alt="Deskripsi Gambar" class="w-full h-full" />

@@ -12,6 +12,10 @@ class SubCategory extends Model
 
     protected $table = 'subcategories';
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function news()
     {
         return $this->belongsToMany(News::class, 'subcategory_news', 'subcategory_id', 'news_id');
