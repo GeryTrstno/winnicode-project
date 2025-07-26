@@ -20,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -54,8 +55,22 @@ class User extends Authenticatable
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfiles::class);
+    }
+
+    public function links()
+    {
+        return $this->hasMany(UserLinks::class);
     }
 }
