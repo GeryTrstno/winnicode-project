@@ -1,7 +1,7 @@
 {{-- filepath: c:\Users\geryt\Documents\winnicode-project\resources\views\new-news.blade.php --}}
 <x-layouts.app :title="__('Create News')">
     <div class="max-w-2xl mx-auto w-full bg-white dark:bg-zinc-800 rounded-xl p-8 shadow space-y-6">
-        <form action="{{ route('profile', auth()->user()->username ?? 'user' . auth()->user()->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             {{-- Judul --}}

@@ -15,9 +15,9 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 
-    Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
 
 });
 
