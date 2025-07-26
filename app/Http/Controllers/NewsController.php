@@ -37,14 +37,15 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+       public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('home')->with('error', 'You must be logged in to create news.');
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'caption' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'slug' => 'required|string|unique:news,slug',
         ]);
 
         $validated['user_id'] = Auth::id();
@@ -55,6 +56,7 @@ class NewsController extends Controller
         return redirect()->route('home')
             ->with('success', 'News created successfully.');
     }
+
 
     /**
      * Display the specified resource.
