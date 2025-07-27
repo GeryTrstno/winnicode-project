@@ -26,6 +26,5 @@
 
         <livewire:news-index />
 
-        <a href="{{ route('news.create') }}">button</a>
     </div>
 </x-layouts.app>

@@ -1,11 +1,15 @@
 <x-layouts.app :title="__('Profile - :name', ['name' => $user->name])">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
+
         <livewire:display-profile :user="$user" :isFollowing="$isFollowing" :showEditProfileButton="true" />
-{{--
+
+        <flux:spacer></flux:spacer>
         <flux:separator></flux:separator>
+        <flux:spacer></flux:spacer>
+
 
         @if ($user->news->count() > 0)
-            <livewire:news-feed :userId="$user->id" />
+            <livewire:news-index :userId="$user->id" />
         @else
             <div class="flex flex-col items-center justify-center py-16 text-center text-gray-500">
                 <a href="{{ route('news.create')}}"
@@ -19,7 +23,6 @@
                 </a>
                 <span class="mt-2">Add New Post</span>
             </div>
-        @endif --}}
-        <h1>Testing</h1>
+        @endif
     </div>
 </x-layouts.app>

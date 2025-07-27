@@ -15,11 +15,11 @@
                 <h2 class="text-4xl font-bold">{{ $news->title }}</h2>
                 <p class="mb-4 font-semibold text-2xl text-zinc-600 dark:text-zinc-400">{{ $news->caption }}</p>
                 <flux:text class="mb-2" size="lg">
-                    By
+                    <span>By </span>
                     {{-- @foreach ($authors as $index => $author)
                         <flux:link href="#" >{{ $author }}</flux:link>@if ($index < $totalAuthors - 2), @elseif ($index == $totalAuthors - 2) and @endif
                     @endforeach --}}
-                    {{-- <flux:link href="{{ route('profile', $news->users->username ?? 'user' . $news->users->id) }}" >{{ $news->users->name }}</flux:link> --}}
+                    <flux:link href="{{ route('user.show', $news->users->username ?? 'user' . $news->users->id) }}" >{{ $news->users->name }}</flux:link>
                 </flux:text>
                 <flux:text class="mb-6" size="lg" variant="subtle">
                     {{-- May, 03 2025 at 22.51 PM --}}
