@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -19,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('news', [NewsController::class, 'store'])->name('news.store');
     Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
 
+    Route::get('profile/{username}', [UserController::class, 'show'])->name('user.show');
 });
 
 require __DIR__.'/auth.php';
