@@ -22,7 +22,7 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+       public function create()
     {
         $categories = Category::all();
         $subcategories = SubCategory::all();
@@ -33,30 +33,31 @@ class NewsController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
-       public function store(Request $request)
+    public function store(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('home')->with('error', 'You must be logged in to create news.');
-        }
-
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'caption' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
-        $validated['user_id'] = Auth::id();
-        $validated['slug'] = Str::slug($validated['title'], '-');
+        $news = new News();
+        $news->title = $request->input('title');
+        $news->content = $request->input('content');
+        $news->caption = $request->input('caption');
+        $news->image = $request->file('image') ? $request->file('image')->store('images/news', 'public') : null;
+        $news->slug = Str::slug($request->input('title'), '-');
+        $news->user_id = Auth::id();
 
-        News::create($validated);
+        $news->save();
 
         return redirect()->route('home')
             ->with('success', 'News created successfully.');
     }
-
 
     /**
      * Display the specified resource.

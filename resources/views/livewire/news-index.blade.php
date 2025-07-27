@@ -10,7 +10,7 @@
                         </button>
                     @endforeach
                     <h1 class="text-sm sm:text-lg md:text-lg font-bold mt-3">{{ Str::limit($item->title, 35, '...') }}</h1>
-                    <p class="absolute-0 text-zinc-800 dark:text-zinc-300 text-xs sm:text-xs md:text-sm">{{ Str::limit($item->content, 100, '...') }}</p>
+                    <p class="absolute-0 text-zinc-800 dark:text-zinc-300 text-xs sm:text-xs md:text-sm">{{ $item->excerpt ?? Str::limit(strip_tags($item->content), 120) }}</p>
                 </div>
             </a>
         @endforeach

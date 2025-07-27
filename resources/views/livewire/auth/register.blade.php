@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserProfiles;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -29,9 +30,20 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         event(new Registered(($user = User::create($validated))));
 
+        $userProfile = new UserProfiles();
+        $userProfile->user_id = $user->id;
+        $userProfile->location = null;
+        $userProfile->company = null;
+        $userProfile->bio = null;
+        $userProfile->image = 'https://placehold.co/200x200'. "?text=" . urlencode($user->name);
+        $userProfile->followers = 0;
+        $userProfile->following = 0;
+        $userProfile->save();
+
+
         Auth::login($user);
 
-        $this->redirectIntended(route('home', absolute: false), navigate: true);
+        $this->redirectIntended(route('home', absolute: true), navigate: true);
     }
 }; ?>
 
@@ -93,7 +105,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     </form>
 
     <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-        <span>{{ __('Already have an account?') }}</span>
+        {{ __('Already have an account?') }}
         <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
     </div>
 </div>

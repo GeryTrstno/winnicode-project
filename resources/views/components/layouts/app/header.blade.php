@@ -8,7 +8,7 @@
 
         {{ $slot }}
 
-        @if (!request()->routeIs('profile') && !request()->routeIs('new'))
+        @if (!request()->routeIs('profile') && !request()->routeIs('news.create'))
             @include('partials.footer')
         @else
             @include('partials.secondary-footer')
