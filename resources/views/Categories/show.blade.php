@@ -3,7 +3,7 @@
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="flex flex-row gap-2 flex-wrap">
             @foreach ($subcategories as $subcategory)
-                <flux:button size="sm" :href="route('subcategory', [$category->slug, $subcategory->slug])" class="mt-2 mr-1 px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-2 focus:outline-none focus:ring-neutral-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-zinc-500!" variant="filled">
+                <flux:button size="sm" :href="route('home', [$category->slug, $subcategory->slug])" class="mt-2 mr-1 px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800 focus:ring-2 focus:outline-none focus:ring-neutral-300 dark:text-zinc-900! dark:bg-white! dark:hover:bg-neutral-100! dark:focus:ring-zinc-500!" variant="filled">
                     {{ $subcategory->name }}
                 </flux:button>
             @endforeach
@@ -46,6 +46,6 @@
         </div>
         <flux:separator class="mb-4 mt-4"></flux:separator>
 
-        <livewire:news-feed :categoryId="$category->id" />
+        <livewire:news-index :categoryId="$category->id" />
     </div>
 </x-layouts.app>

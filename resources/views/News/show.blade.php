@@ -1,7 +1,13 @@
 <x-layouts.app :title="'News - ' . $news->title">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <img src="{{ asset('storage/' . $news->image)}}" alt="Deskripsi Gambar" class="w-full h-full" />
+            @if($news->image)
+                <img src="{{ asset('storage/' . $news->image)}}" alt="{{ $news->title }}" class="w-full h-full object-cover">
+            @else
+                <div class="w-full h-full bg-gray-300 flex items-center justify-center">
+                    <span class="text-gray-500">No Image</span>
+                </div>
+            @endif
         </div>
         <div class="flex justify-center w-full">
             <div class="relative w-full md:w-2/3 rounded-xl">

@@ -23,7 +23,7 @@
             </flux:navbar.item>
             <flux:navmenu>
                 @foreach ($categories as $category)
-                    <flux:navmenu.item :href="route('category', $category->slug)">{{ $category->name }}</flux:navmenu.item>
+                    <flux:navmenu.item :href="route('category.show', $category->slug)">{{ $category->name }}</flux:navmenu.item>
                 @endforeach
             </flux:navmenu>
         </flux:dropdown>
@@ -42,9 +42,9 @@
                             {{ __('News') }}
                         </flux:navbar.item> --}}
 
-                        <flux:navbar.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('about-us')" wire:navigate>
+                        {{-- <flux:navbar.item icon="about-us-icon" :href="route('about-us')" :current="request()->routeIs('about-us')" wire:navigate>
                             {{ __('About Us') }}
-                        </flux:navbar.item>
+                        </flux:navbar.item> --}}
                         <flux:dropdown position="bottom" align="end">
                                 @if ($shouldShowChevron)
                                     <flux:profile
@@ -74,7 +74,7 @@
                                             <flux:menu.separator />
 
                                             <flux:menu.radio.group>
-                                                <flux:menu.item href="{{ route('profile', auth()->user()->username ?? 'user' . auth()->user()->id) }}" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item>
+                                                <flux:menu.item href="{{ route('user.show', auth()->user()->username ?? 'user' . auth()->user()->id) }}" icon="user-circle" wire:navigate>{{ __('Profile') }}</flux:menu.item>
                                             </flux:menu.radio.group>
 
                                             <flux:menu.separator />

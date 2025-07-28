@@ -19,14 +19,12 @@
         @endforeach
     </div>
 
-
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @if($this->selectedNews && $this->selectedNews->count() > 0)
             @foreach ($this->selectedNews as $news)
                 <a href="{{ route('news.show', $news->slug) }}" class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg hover:scale-102 transition-all duration-300 ease-in-out">
                     @if($news->image)
-                        <img src="images/conference.jpg" alt="{{ $news->title }}" class="w-full h-48 object-cover">
+                        <img src="{{ asset('storage/' . $news->image)}}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
                     @else
                         <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
                             <span class="text-gray-500">No Image</span>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\StoreSubCategoryRequest;
+use App\Http\Requests\UpdateSubCategoryRequest;
+use App\Models\SubCategory;
 use App\Models\Category;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Category $request)
+    public function store(StoreSubCategoryRequest $request)
     {
         //
     }
@@ -35,22 +36,19 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $category, SubCategory $subcategory)
     {
-        $news = $category->news; // relasi news
-        $subcategories = $category->subcategories; // relasi subcategory
-        // dd($category, $news, $subcategories); // Uncomment for debugging
-        return view('Categories.show', [
-            'category' => $category,
-            'subcategories' => $subcategories,
-            'news' => $news,
+
+        return view('subcategories', [
+            'subcategory' => $subcategory,
+            'category' => $category
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(SubCategory $subcategory)
     {
         //
     }
@@ -58,7 +56,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Category $category)
+    public function update(UpdateSubCategoryRequest $request, SubCategory $subcategory)
     {
         //
     }
@@ -66,7 +64,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(SubCategory $subCategory)
     {
         //
     }

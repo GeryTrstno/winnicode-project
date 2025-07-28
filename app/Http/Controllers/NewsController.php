@@ -55,7 +55,7 @@ class NewsController extends Controller
 
         $news->save();
 
-        return redirect()->route('home')
+        return redirect()->route('user.show', auth()->user()->username ?? 'user' . auth()->user()->id)
             ->with('success', 'News created successfully.');
     }
 

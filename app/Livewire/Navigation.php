@@ -7,15 +7,13 @@ use Livewire\Component;
 
 class Navigation extends Component
 {
-    public $categories = [];
-
-    public function mount()
-    {
-        $this->categories = Category::all();
-    }
+    public $categories;
 
     public function render()
     {
-        return view('partials.navigation');
+        $this->categories = Category::all();
+        return view('partials.navigation', [
+            'categories' => $this->categories,
+        ]);
     }
 }

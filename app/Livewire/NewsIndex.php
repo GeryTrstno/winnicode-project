@@ -7,21 +7,21 @@ use Livewire\Component;
 
 class NewsIndex extends Component
 {
-    public $news;
-    public $itemCount = 16;
+    public $itemcount = 16;
     public $totalItems;
+    public $news;
     public $hasMorePages = true;
-
-    public $userId;
     public $categoryId;
     public $subcategoryId;
+    public $userId;
 
-    public function mount($userId = null, $categoryId = null, $subcategoryId = null)
+    public function mount($categoryId = null, $subcategoryId = null, $userId = null)
     {
-        $this->userId = $userId;
         $this->categoryId = $categoryId;
         $this->subcategoryId = $subcategoryId;
+        $this->userId = $userId;
 
+        // Hitung total berita berdasarkan filter yang diterapkan
         $this->totalItems = News::when($categoryId, function($q) {
                 $q->whereHas('categories', function($q2) {
                     $q2->where('categories.id', $this->categoryId);
@@ -41,39 +41,42 @@ class NewsIndex extends Component
 
     public function loadMore()
     {
-        $this->itemCount += 16;
+        $this->itemcount += 16;
 
-        if ($this->itemCount >= $this->totalItems) {
+        if ($this->itemcount >= $this->totalItems) {
             $this->hasMorePages = false;
         }
     }
 
     public function render()
     {
+        // Memulai query dengan relasi yang diperlukan
         $query = News::with(['categories', 'subcategories'])->latest();
 
-        if ($this->categoryId)
-        {
+        // Filter berdasarkan categoryId jika ada
+        if ($this->categoryId) {
             $query->whereHas('categories', function($q) {
                 $q->where('categories.id', $this->categoryId);
             });
         }
 
-        if ($this->subcategoryId)
-        {
+        // Filter berdasarkan subcategoryId jika ada
+        if ($this->subcategoryId) {
             $query->whereHas('subcategories', function($q) {
                 $q->where('subcategories.id', $this->subcategoryId);
             });
         }
 
-        if ($this->userId)
-        {
-            $query->where('user_id', $this->userId);
+        // Filter berdasarkan userId jika ada
+        if ($this->userId) {
+            $query->where('user_id', $this->userId); // Memastikan kita memfilter berita berdasarkan user_id
         }
 
-        $this->news = $query->take($this->itemCount)->get();
+        // Ambil berita dengan batasan itemcount
+        $this->news = $query->take($this->itemcount)->get();
 
-        if ($this->news->count() < $this->itemCount) {
+        // Mengecek jika jumlah berita lebih sedikit dari itemcount
+        if ($this->news->count() < $this->itemcount) {
             $this->hasMorePages = false; // Jika jumlah berita kurang dari itemcount, tidak ada halaman lagi
         }
 

@@ -13,7 +13,13 @@
                 relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg transform transition-all duration-300 ease-in-out">
             <!-- Bagian Atas: Gambar -->
             <div class="row-span-1">
-                <img src="images/news.jpeg" alt="Deskripsi Gambar" class="w-full h-full object-cover" />
+                @if($item->image)
+                    <img src="{{ asset('storage/' . $item->image)}}" alt="{{ $item->title }}" class="w-full h-full object-cover">
+                @else
+                    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500">No Image</span>
+                    </div>
+                @endif
             </div>
             <!-- Bagian Bawah: Tulisan -->
             <div class="row-span-1 p-4">

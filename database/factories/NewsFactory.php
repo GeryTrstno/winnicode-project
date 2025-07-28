@@ -30,7 +30,6 @@ class NewsFactory extends Factory
             'title' => $title,
             'content' => $content,
             'caption' => fake()->sentence(),
-            'image' => fake()->imageUrl(),
             'slug' => Str::slug($title),
         ];
     }
