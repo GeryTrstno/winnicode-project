@@ -34,7 +34,7 @@
                             type="text"
                             wire:model="username"
                         />
-                        @error('username') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        {{-- @error('username') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror --}}
                     </div>
                 </div>
                 <div class="flex gap-6">
