@@ -33,7 +33,7 @@
                     <p class="text-xs text-black dark:text-zinc-200 mb-2">Choose Max. 3</p>
                     <flux:checkbox.group wire:model="selectedCategories" label="">
                         @foreach($categories as $category)
-                            <flux:checkbox label="{{ $category->name }}" value="{{ $category->id }}" />
+                            <flux:checkbox name="categories[]" label="{{ $category->name }}" value="{{ $category->id }}" />
                         @endforeach
                     </flux:checkbox.group>
                 </div>
@@ -44,7 +44,7 @@
                     <p class="text-xs text-black dark:text-zinc-200 mb-2">Choose Max. 6</p>
                     <flux:checkbox.group wire:model="selectedSubCategories" label="">
                         @foreach($subcategories as $subcategory)
-                            <flux:checkbox label="{{ $subcategory->name }}" value="{{ $subcategory->id }}" />
+                            <flux:checkbox name="subcategories[]" label="{{ $subcategory->name }}" value="{{ $subcategory->id }}" />
                         @endforeach
                     </flux:checkbox.group>
                 </div>
@@ -138,6 +138,5 @@
     </div>
 
 </x-layouts.app>
-
 
 

@@ -6,8 +6,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\SubCategory;
-use App\Models\CategoryNew;
-use App\Models\SubCategoryNew;
+use App\Models\CategoryNews;
+use App\Models\SubCategoryNews;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -41,17 +41,17 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'caption' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'selectedCategories' => 'required|array', // Pastikan kategori yang dipilih ada
-            'selectedCategories.*' => 'exists:categories,id', // Validasi setiap ID kategori,
-            'selectedSubCategories' => 'required|array',
-            'selectedSubCategories.*' => 'exists:subcategories,id'
+            'categories' => 'array|max:3',
+            'categories.*' => 'exists:categories,id',
+            'subcategories' => 'array|max:6',
+            'subcategories.*' => 'exists:subcategories,id',
         ]);
 
 
@@ -65,20 +65,19 @@ class NewsController extends Controller
 
         $news->save();
 
-        foreach ($request->input('selectedCategories') as $categoryId) {
-            $categoryNews = new CategoryNew();
-            $categoryNews->news_id = $news->id;
-            $categoryNews->category_id = $categoryId;
-            $categoryNews->save();
+        foreach ($request->input('categories', []) as $categoryId) {
+            $categoryNew = new CategoryNews();
+            $categoryNew->news_id = $news->id;
+            $categoryNew->category_id = $categoryId;
+            $categoryNew->save();
         }
 
-        foreach ($request->input('selectedSubCategories') as $subcategoryId) {
-            $subcategoryNews = new SubCategoryNew();
-            $subcategoryNews->news_id = $news->id;
-            $subcategoryNews->subcategory_id = $subcategoryId;
-            $subcategoryNews->save();
+        foreach ($request->input('subcategories', []) as $subcategoryId) {
+            $subcategoryNew = new SubCategoryNews();
+            $subcategoryNew->news_id = $news->id;
+            $subcategoryNew->subcategory_id = $subcategoryId;
+            $subcategoryNew->save();
         }
-
 
         return redirect()->route('user.show', auth()->user()->username ?? 'user' . auth()->user()->id)
             ->with('success', 'News created successfully.');

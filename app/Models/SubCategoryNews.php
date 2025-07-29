@@ -9,4 +9,6 @@ use Illuminate\Testing\Fluent\Concerns\Has;
 class SubCategoryNews extends Model
 {
     use HasFactory;
+
+    protected $table = 'subcategory_news';
 }
