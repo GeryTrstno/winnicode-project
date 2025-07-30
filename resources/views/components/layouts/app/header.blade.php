@@ -8,8 +8,8 @@
 
         {{ $slot }}
 
-        @if (!request()->routeIs('profile') && !request()->routeIs('news.create'))
-            @include('partials.footer')
+        @if (!request()->routeIs('user.show') && !request()->routeIs('news.create'))
+            <livewire:footer></livewire:footer>
         @else
             @include('partials.secondary-footer')
         @endif

@@ -39,7 +39,7 @@ class SubCategoryController extends Controller
     public function show(Category $category, SubCategory $subcategory)
     {
 
-        return view('subcategories', [
+        return view('SubCategories.show', [
             'subcategory' => $subcategory,
             'category' => $category
         ]);

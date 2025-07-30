@@ -1,16 +1,16 @@
-<div class="grid auto-rows-min gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid auto-rows-min gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     @foreach ($news as $item)
         <!-- Membungkus seluruh elemen dengan <a> untuk mengarahkan ke halaman detail -->
         <a href="{{ route('news.show', $item->slug) }}" class="
                 hover:bg-zinc-200
                 dark:hover:bg-zinc-800
-                hover:shadow-lg
+                shadow-md hover:shadow-xl
                 transform
                 transition-all
                 duration-300
                 ease-in-out
                 hover:scale-102
-                relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg transform transition-all duration-300 ease-in-out">
+                relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transform transition-all duration-300 ease-in-out">
             <!-- Bagian Atas: Gambar -->
             <div class="row-span-1">
                 @if($item->image)

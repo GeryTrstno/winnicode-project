@@ -21,26 +21,32 @@
             <div>
                 <flux:heading size="lg" class="mb-4">Categories</flux:heading>
                 <div class="space-y-2">
-                    {{-- @foreach ($categories as $category)
+                    @foreach ($categories as $category)
                         <div>
-                            <a href="{{ route('category', ['slug' => $category->slug]) }}">
+                            <a href="{{ route('category.show', $category->slug) }}">
                                 <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $category->name }}</flux:text>
                             </a>
                         </div>
-                    @endforeach --}}
+                    @endforeach
                 </div>
             </div>
+
 
             <div>
                 <flux:heading size="lg" class="mb-4">Quick Links</flux:heading>
                 <div class="space-y-2">
                     @foreach($quickLinks as $link)
-                        <div>
-                            <a href="{{ route($link['route']) }}">
-                                <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $link['name'] }}</flux:text>
-                            </a>
-                        </div>
+                            <div>
+                                <a href="{{ route($link['route']) }}">
+                                    <flux:text class="hover:text-zinc-800 dark:hover:text-white">{{ $link['name'] }}</flux:text>
+                                </a>
+                            </div>
                     @endforeach
+                    @auth
+                        <a href="{{ route('user.show', ['username' => auth()->user()->username ?? 'user ' . auth()->user()->id]) }}">
+                            <flux:text class="hover:text-zinc-800 dark:hover:text-white">Profile</flux:text>
+                        </a>
+                    @endauth
                 </div>
             </div>
 

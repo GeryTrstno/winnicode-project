@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full gap-6 mx-auto dark:bg-zinc-900 rounded-xl p-6">
+<div class="flex flex-col w-full gap-6 mx-auto dark:bg-zinc-900 rounded-xl p-6 mb-2">
     <div class="relative h-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
         <img src="https://placehold.co/1600x400/dedede/555/?text=Profile+Cover"
              alt="Cover photo for {{ $user->name }}"

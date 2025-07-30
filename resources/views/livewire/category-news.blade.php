@@ -4,15 +4,15 @@
             <button
                 wire:click="selectCategory({{ $category->id }})"
                 type="button"
-                class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center rounded-lg focus:ring-2 focus:outline-none focus:ring-neutral-300 dark:text-zinc-900 dark:bg-white dark:hover:bg-neutral-100 dark:focus:ring-zinc-500"
+                class="px-3 py-1.5 sm:py-2 text-xs sm:text-xs font-medium text-center rounded-lg focus:ring-2 focus:outline-none focus:ring-neutral-300 dark:focus:ring-zinc-500"
                 :class="{
                     // Light theme classes
-                    'bg-zinc-900 text-white hover:bg-zinc-800': {{ $category->id }} !== {{ $selectedCategoryId }},
-                    'bg-zinc-500 text-white': {{ $category->id }} === {{ $selectedCategoryId }},
+                    'bg-zinc-900 text-white hover:bg-zinc-700': {{ $category->id }} !== {{ $selectedCategoryId }},
+                    'bg-zinc-700 text-white': {{ $category->id }} === {{ $selectedCategoryId }},
 
                     // Dark theme classes
-                    'dark:bg-zinc-100 dark:text-white dark:hover:bg-zinc-200': {{ $category->id }} !== {{ $selectedCategoryId }},
-                    'dark:bg-zinc-400 dark:text-white dark:hover:bg-zinc-400': {{ $category->id }} === {{ $selectedCategoryId }}
+                    'dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300': {{ $category->id }} !== {{ $selectedCategoryId }},
+                    'dark:bg-zinc-300 dark:text-black dark:hover:bg-zinc-300': {{ $category->id }} === {{ $selectedCategoryId }}
                 }">
                 {{ $category->name }}
             </button>
@@ -22,7 +22,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @if($this->selectedNews && $this->selectedNews->count() > 0)
             @foreach ($this->selectedNews as $news)
-                <a href="{{ route('news.show', $news->slug) }}" class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg hover:scale-102 transition-all duration-300 ease-in-out">
+                <a href="{{ route('news.show', $news->slug) }}" class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-xl overflow-hidden hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:scale-102 transition-all duration-300 ease-in-out">
                     @if($news->image)
                         <img src="{{ asset('storage/' . $news->image)}}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
                     @else
