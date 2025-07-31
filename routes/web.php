@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 
+    Route::view('about-us', 'about')->name('about');
+
     Route::get('news', function () {
         $news = News::query(); // Gunakan query builder, bukan News::all()
 
@@ -37,8 +39,6 @@ Route::middleware(['auth'])->group(function () {
             'news' => $news,
         ]);
     })->name('news.index');
-
-
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('news', [NewsController::class, 'store'])->name('news.store');
     Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');

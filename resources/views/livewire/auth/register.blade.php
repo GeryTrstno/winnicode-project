@@ -35,7 +35,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $userProfile->location = null;
         $userProfile->company = null;
         $userProfile->bio = null;
-        $userProfile->image = 'https://placehold.co/200x200'. "?text=" . urlencode($user->name);
+        $userProfile->image = 'Default_pfp.jpg';
+        $userProfile->cover_image = 'cover.jpg';
         $userProfile->followers = 0;
         $userProfile->following = 0;
         $userProfile->save();

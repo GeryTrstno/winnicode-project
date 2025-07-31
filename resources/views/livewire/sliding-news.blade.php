@@ -66,8 +66,8 @@
     <section class="relative overflow-hidden rounded-xl shadow-2xl">
         <div class="flex sm:aspect-[16/9] md:aspect-[16/6] h-full transition-transform duration-500 ease-in-out" id="carouselContainer">
             <!-- Slide 1 -->
-            @foreach ($news as $item)
-                <div class="carousel-slide slide-1 min-w-full flex items-end">
+            @foreach ($news as $index => $item)
+                <div class="carousel-slide slide-1 min-w-full flex items-end {{ $index === 0 ? 'active' : '' }}">
                     <div class="p-6 sm:p-8 md:p-12 text-white max-w-2xl">
                         <div class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">
                             @foreach ($item->categories as $category)

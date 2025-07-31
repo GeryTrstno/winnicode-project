@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->text('bio')->nullable();
             $table->string('image')->nullable();
+            $table->string('cover_image')->nullable();
             $table->integer('followers')->default(0);
             $table->integer('following')->default(0);
             $table->timestamps();

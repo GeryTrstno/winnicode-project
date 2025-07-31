@@ -14,7 +14,8 @@ class UserProfiles extends Model
         'location',
         'company',
         'bio',
-        'image'
+        'image',
+        'cover_image'
     ];
 
     public function user()

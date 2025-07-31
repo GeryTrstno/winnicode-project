@@ -23,7 +23,8 @@ class UserProfilesSeeder extends Seeder
                 'followers' => rand(0, 1000), // Random number of followers
                 'following' => rand(0, 1000), // Random number of following
                 'bio' => Str::random(100), // Random bio text
-                'image' => 'https://placehold.co/200x200?text=' . urlencode($user->name), // Placeholder image
+                'image' => 'Default_pfp.jpg', // Placeholder image
+                'cover_image' => 'cover.jpg', // Placeholder cover image
             ]);
         }
     }

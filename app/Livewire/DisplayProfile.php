@@ -3,8 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\User;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class DisplayProfile extends Component
 {
@@ -14,8 +15,9 @@ class DisplayProfile extends Component
     public $name;
     public $username;
     public $bio;
+    public $profileImage;
+    public $coverImage;
     public $user;
-    public $image;
     public $isFollowing;
 
     public function mount($user, $isFollowing = false)
@@ -25,22 +27,15 @@ class DisplayProfile extends Component
         $this->name = $user->name;
         $this->username = $user->username;
         $this->bio = $user->profile->bio ?? '';
-        $this->image = null;
+        // Tidak set profileImage dan coverImage di mount agar tidak konflik dengan file upload
     }
 
     public function editProfile()
     {
         $this->editMode = true;
-    }
-
-    public function cancelEdit()
-    {
-        $this->editMode = false;
-        // Reset value ke data user terakhir
-        $this->name = $this->user->name;
-        $this->username = $this->user->username;
-        $this->bio = $this->user->profile->bio ?? '';
-        $this->image = null;
+        // Reset file uploads ketika masuk edit mode
+        $this->profileImage = null;
+        $this->coverImage = null;
     }
 
     public function save()
@@ -49,22 +44,82 @@ class DisplayProfile extends Component
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . $this->user->id,
             'bio' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'profileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  // Max 2MB
+            'coverImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',  // Max 5MB
         ]);
 
+        // Update nama, username, dan bio
         $this->user->name = $this->name;
         $this->user->username = $this->username;
         $this->user->profile->bio = $this->bio;
-        $this->user->profile->image = 'https://placehold.co/200x200?text=' . urlencode($this->user->name);
 
+        // Menangani gambar profil
+        if ($this->profileImage && is_object($this->profileImage)) {
+            // Hapus gambar lama jika ada
+            if ($this->user->profile->image && Storage::exists('public/' . $this->user->profile->image)) {
+                Storage::delete('public/' . $this->user->profile->image);
+            }
+            $profileImagePath = $this->profileImage->store('profile_images', 'public');
+            $this->user->profile->image = $profileImagePath;
+        }
+
+        // Menangani gambar sampul
+        if ($this->coverImage && is_object($this->coverImage)) {
+            // Hapus gambar lama jika ada
+            if ($this->user->profile->cover_image && Storage::exists('public/' . $this->user->profile->cover_image)) {
+                Storage::delete('public/' . $this->user->profile->cover_image);
+            }
+            $coverImagePath = $this->coverImage->store('cover_images', 'public');
+            $this->user->profile->cover_image = $coverImagePath;
+        }
+
+        // Simpan perubahan
         $this->user->save();
         $this->user->profile->save();
 
+        // Reset edit mode dan file uploads
         $this->editMode = false;
+        $this->profileImage = null;
+        $this->coverImage = null;
 
-        session()->flash('success', __('Profile updated successfully.'));
+        session()->flash('message', __('Profile updated successfully.'));
+
+        // Refresh user data
+        $this->user->refresh();
+        $this->user->load('profile');
+
         return redirect()->route('user.show', ['username' => $this->user->username]);
-        // Untuk Livewire, cukup flash message, tidak perlu redirect
+    }
+
+    public function cancelEdit()
+    {
+        $this->editMode = false;
+        // Reset nilai ke data pengguna yang terakhir
+        $this->name = $this->user->name;
+        $this->username = $this->user->username;
+        $this->bio = $this->user->profile->bio ?? '';
+        $this->profileImage = null;
+        $this->coverImage = null;
+    }
+
+    public function removeProfileImage()
+    {
+        if ($this->user->profile->image && Storage::exists('public/' . $this->user->profile->image)) {
+            Storage::delete('public/' . $this->user->profile->image);
+        }
+        $this->user->profile->image = null;
+        $this->user->profile->save();
+        $this->profileImage = null;
+    }
+
+    public function removeCoverImage()
+    {
+        if ($this->user->profile->cover_image && Storage::exists('public/' . $this->user->profile->cover_image)) {
+            Storage::delete('public/' . $this->user->profile->cover_image);
+        }
+        $this->user->profile->cover_image = null;
+        $this->user->profile->save();
+        $this->coverImage = null;
     }
 
     public function render()
