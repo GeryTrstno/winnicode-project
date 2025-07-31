@@ -12,11 +12,11 @@
         <div class="flex justify-center w-full">
             <div class="relative w-full md:w-2/3 rounded-xl">
                 @foreach ($news->categories as $category)
-                    {{-- <flux:button href="{{ route('category', ['category' => $category->slug]) }}"
+                    <flux:button href="{{ route('category.show', ['category' => $category->slug]) }}"
                         variant="primary"
                         class="mr-2 mb-2">
                         {{ $category->name }}
-                    </flux:button> --}}
+                    </flux:button>
                 @endforeach
                 <h2 class="text-4xl font-bold">{{ $news->title }}</h2>
                 <p class="mb-4 font-semibold text-2xl text-zinc-600 dark:text-zinc-400">{{ $news->caption }}</p>
@@ -40,22 +40,6 @@
             </div>
         </div>
 
-        {{-- <flux:separator></flux:separator>
-        <section class="py-4 antialiased">
-            <div class="flex justify-center w-full">
-                <div class="relative w-full md:w-2/3 rounded-xl">
-                    <flux:heading size="xl" class="mb-4">Discussions ({{ $numofDiscussions }})</flux:heading>
-                    <form class="mb-6">
-                        <flux:textarea class="mb-4" rows="auto"
-                            placeholder="Write a comment..."
-                        />
-                        <flux:button>
-                            Post comment
-                        </flux:button>
-                    </form>
-
-                </div>
-            </div>
-        </section> --}}
+        <livewire:comments-section :newsId="$news->id" />
     </div>
 </x-layouts.app>

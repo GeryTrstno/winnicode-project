@@ -27,4 +27,8 @@ class News extends Model
     public function subcategories() {
         return $this->belongsToMany(SubCategory::class, 'subcategory_news', 'news_id', 'subcategory_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
