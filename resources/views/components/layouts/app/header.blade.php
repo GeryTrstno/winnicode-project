@@ -8,10 +8,10 @@
 
         {{ $slot }}
 
-        @if (!request()->routeIs('user.show') && !request()->routeIs('news.create'))
+        @if (!request()->routeIs('user.show') && !request()->routeIs('news.create') && !request()->routeIs('news.index'))
             <livewire:footer></livewire:footer>
         @else
-            @include('partials.secondary-footer')
+            <livewire:secondary-footer></livewire:secondary-footer>
         @endif
 
         @fluxScripts

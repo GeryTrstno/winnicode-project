@@ -27,7 +27,6 @@ class Footer extends Component
 
         $this->policies = [
             ['name' => 'Privacy Policy', 'path' => '/privacy-policy'],
-            ['name' => 'Terms of Services', 'path' => '/terms'],
             ['name' => 'Cookies Policy', 'path' => '/cookies'],
         ];
     }

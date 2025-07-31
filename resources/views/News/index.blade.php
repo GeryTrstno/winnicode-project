@@ -23,7 +23,7 @@
             @endforeach
         @else
             <div class="col-span-4 text-center p-4">
-                <p class="text-gray-500">No news articles available.</p>
+                <p class="text-zinc-300">No news articles available.</p>
             </div>
         @endif
     </div>

@@ -1,5 +1,5 @@
 <flux:footer container class="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-    <div class="flex flex-wrap items-center gap-6">
+    <div class="flex flex-wrap items-center">
             <flux:text>© 2025 News Times. All rights reserved.</flux:text>
 
             <flux:spacer></flux:spacer>

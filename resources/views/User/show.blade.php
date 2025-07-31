@@ -7,7 +7,7 @@
 
         @if ($user->news->count() > 0)
             <livewire:news-index :userId="$user->id" />
-        @else
+        @elseif (auth()->user() && auth()->user()->id === $user->id)
             <div class="flex flex-col items-center justify-center py-16 text-center text-gray-500">
                 <a href="{{ route('news.create')}}"
                     aria-label="Tambah News">
