@@ -20,8 +20,6 @@ class UserProfilesSeeder extends Seeder
         foreach ($users as $user) {
             UserProfiles::create([
                 'user_id' => $user->id,
-                'followers' => rand(0, 1000), // Random number of followers
-                'following' => rand(0, 1000), // Random number of following
                 'bio' => Str::random(100), // Random bio text
                 'image' => 'Default_pfp.jpg', // Placeholder image
                 'cover_image' => 'cover.jpg', // Placeholder cover image

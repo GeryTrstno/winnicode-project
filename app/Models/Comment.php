@@ -11,17 +11,17 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'news_id',
         'content',
-        'parent_id',
-        'is_active',
     ];
 
     protected $guarded = [
         'id',
+        'user_id',
+        'news_id',
         'created_at',
         'updated_at',
+        'parent_id',
+        'is_active',
     ];
 
     public function user()

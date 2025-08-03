@@ -17,6 +17,8 @@ class CommentsSection extends Component
 
     public function render()
     {
+        $news = News::findOrFail($this->newsId);
+
         $comments = Comment::where('news_id', $this->newsId)->orderBy('created_at', 'desc')->get();
 
         $commentsReply = Comment::where('news_id', $this->newsId)
@@ -28,6 +30,7 @@ class CommentsSection extends Component
         return view('livewire.comments-section', [
             'comments' => $comments,
             'commentsReply' => $commentsReply,
+            'news' => $news
         ]);
     }
 }

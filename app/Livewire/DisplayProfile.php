@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Follow;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithFileUploads;
@@ -124,6 +125,18 @@ class DisplayProfile extends Component
 
     public function render()
     {
-        return view('livewire.display-profile');
+        $followers = Follow::where('following_id', $this->user->id)->get();
+        $following = Follow::where('follower_id', $this->user->id)->get();
+
+        $followersCount = Follow::where('following_id', $this->user->id)->count();
+        $followingCount = Follow::where('follower_id', $this->user->id)->count();
+
+
+        return view('livewire.display-profile', [
+            'follower' => $followers,
+            'following' => $following,
+            'followersCount' => $followersCount,
+            'followingCount' => $followingCount
+        ]);
     }
 }

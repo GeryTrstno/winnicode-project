@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('image')->nullable();
             $table->string('cover_image')->nullable();
-            $table->integer('followers')->default(0);
-            $table->integer('following')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  // Foreign key constraint

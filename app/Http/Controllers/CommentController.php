@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Support\Facades\Auth;
+
+use Livewire\Attributes\Validate;
 
 class CommentController extends Controller
 {
@@ -29,7 +32,23 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $request->validate([
+            'content' => 'required|string|max:255',
+            'news_id' => 'required|exists:news,id',
+            'parent_comment_id' => 'nullable|exists:comments,id'
+        ]);
+
+        $comment = new Comment();
+        $comment->content = $request->input('content');
+        $comment->user_id = Auth::id();
+        $comment->news_id = $request->input('news_id');
+        $comment->is_active = 1;
+        $comment->parent_comment_id = $request->input('parent_comment_id');
+
+        $comment->save();
+
+        return redirect()->route('news.show', $request->input('news_slug'))
+            ->with('success', 'News created successfully.');
     }
 
     /**
@@ -37,7 +56,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        //`
     }
 
     /**

@@ -37,8 +37,6 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $userProfile->bio = null;
         $userProfile->image = 'Default_pfp.jpg';
         $userProfile->cover_image = 'cover.jpg';
-        $userProfile->followers = 0;
-        $userProfile->following = 0;
         $userProfile->save();
 
 

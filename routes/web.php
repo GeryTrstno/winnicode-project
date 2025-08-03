@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SubCategoryController;
 use App\Models\News;
 
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
             'news' => $news,
         ]);
     })->name('news.index');
+
+    Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
+
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('news', [NewsController::class, 'store'])->name('news.store');
     Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');

@@ -93,11 +93,11 @@
                     </div>
                     <div class="flex gap-6">
                         <div>
-                            <span class="font-bold">{{ $user->profile->followers }}</span>
+                            <span class="font-bold">{{ $followersCount }}</span>
                             <span class="text-gray-500">Followers</span>
                         </div>
                         <div>
-                            <span class="font-bold">{{ $user->profile->following }}</span>
+                            <span class="font-bold">{{ $followingCount }}</span>
                             <span class="text-gray-500">Following</span>
                         </div>
                     </div>
@@ -195,11 +195,11 @@
                 </div>
                 <div class="flex gap-6">
                     <div>
-                        <span class="font-bold">{{ $user->profile->followers }}</span>
+                        <span class="font-bold">{{ $followersCount }}</span>
                         <span class="text-gray-500">Followers</span>
                     </div>
                     <div>
-                        <span class="font-bold">{{ $user->profile->following }}</span>
+                        <span class="font-bold">{{ $followingCount }}</span>
                         <span class="text-gray-500">Following</span>
                     </div>
                 </div>

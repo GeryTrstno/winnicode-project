@@ -50,7 +50,6 @@
                 </div>
             </div>
 
-
             {{-- Image --}}
             <div>
                 <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Image') }}</flux:text>
@@ -107,36 +106,146 @@
                 background-color: #a1a1aa; /* Custom color for resize handle */
                 border-radius: 2px 0px 10px 0px;
             }
+
+            /* Loading state untuk editor */
+            .quill-loading {
+                background: #f3f4f6;
+                border: 1px dashed #d1d5db;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #6b7280;
+                font-style: italic;
+            }
         </style>
 
-        {{-- Script for Quill --}}
+        {{-- Script for Quill dengan multiple fallback methods --}}
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const quill = new Quill('#quill-editor', {
-                    theme: 'snow',
-                    placeholder: '    Write your content here...',
-                    modules: {
-                        toolbar: [
-                            [{ 'header': [1, 2, 3, false] }],
-                            ['bold', 'italic', 'underline'],
-                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                            ['link', 'image'],
-                            [{ 'align': [] }],  // Justify alignment added here
-                            ['clean']
-                        ]
+            // Global variable untuk tracking
+            let quillInstance = null;
+            let initAttempts = 0;
+            const maxAttempts = 10;
+
+            function initializeQuill() {
+                initAttempts++;
+
+                // Check jika Quill sudah tersedia
+                if (typeof Quill === 'undefined') {
+                    if (initAttempts < maxAttempts) {
+                        console.log(`Quill not ready, attempt ${initAttempts}/${maxAttempts}`);
+                        setTimeout(initializeQuill, 200);
+                        return;
+                    } else {
+                        console.error('Quill failed to load after maximum attempts');
+                        return;
+                    }
+                }
+
+                // Check jika sudah diinisialisasi
+                if (quillInstance) {
+                    return;
+                }
+
+                try {
+                    const editorElement = document.getElementById('quill-editor');
+                    if (!editorElement) {
+                        console.error('Quill editor element not found');
+                        return;
+                    }
+
+                    // Remove loading class jika ada
+                    editorElement.classList.remove('quill-loading');
+
+                    quillInstance = new Quill('#quill-editor', {
+                        theme: 'snow',
+                        placeholder: '    Write your content here...',
+                        modules: {
+                            toolbar: [
+                                [{ 'header': [1, 2, 3, false] }],
+                                ['bold', 'italic', 'underline'],
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                ['link', 'image'],
+                                [{ 'align': [] }],
+                                ['clean']
+                            ]
+                        }
+                    });
+
+                    console.log('Quill editor initialized successfully');
+
+                    // Setup form submit handler
+                    const form = document.getElementById('news-form');
+                    const contentInput = document.getElementById('content-input');
+
+                    if (form && contentInput) {
+                        form.addEventListener('submit', function () {
+                            contentInput.value = quillInstance.root.innerHTML.trim();
+                        });
+                    }
+
+                } catch (error) {
+                    console.error('Error initializing Quill:', error);
+                }
+            }
+
+            // Multiple initialization strategies
+
+            // 1. DOM Content Loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializeQuill);
+            } else {
+                // DOM sudah ready
+                initializeQuill();
+            }
+
+            // 2. Window load sebagai fallback
+            window.addEventListener('load', function() {
+                if (!quillInstance) {
+                    setTimeout(initializeQuill, 100);
+                }
+            });
+
+            // 3. Livewire hooks jika menggunakan Livewire
+            if (typeof Livewire !== 'undefined') {
+                Livewire.hook('component.initialized', () => {
+                    if (!quillInstance) {
+                        setTimeout(initializeQuill, 100);
                     }
                 });
 
-                const form = document.getElementById('news-form');
-                const contentInput = document.getElementById('content-input');
-
-                form.addEventListener('submit', function () {
-                    contentInput.value = quill.root.innerHTML.trim();
+                Livewire.hook('element.updated', () => {
+                    if (!quillInstance) {
+                        setTimeout(initializeQuill, 100);
+                    }
                 });
-            });
+            }
+
+            // 4. Intersection Observer sebagai fallback terakhir
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !quillInstance) {
+                            setTimeout(initializeQuill, 100);
+                            observer.disconnect();
+                        }
+                    });
+                });
+
+                // Observe ketika DOM ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const editorElement = document.getElementById('quill-editor');
+                        if (editorElement) {
+                            observer.observe(editorElement);
+                        }
+                    });
+                } else {
+                    const editorElement = document.getElementById('quill-editor');
+                    if (editorElement) {
+                        observer.observe(editorElement);
+                    }
+                }
+            }
         </script>
     </div>
-
 </x-layouts.app>
-
-
