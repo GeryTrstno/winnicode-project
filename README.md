@@ -45,6 +45,13 @@ Jalankan command ini di terminal terpisah
 composer run dev     # command ini memungkinkan untuk menejalankan php artisan serve dan npm run dev dalam satu waktu
 ```
 
-### 6. Akses http://127.0.0.1:8000/ di browser anda
+### 6. Linking Storage
+Jalankan command ini di terminal terpisah
+```bash
+#Menjalankan Server
+php artisan storage:link
+```
+
+### 7. Akses http://127.0.0.1:8000/ di browser anda
 
 
