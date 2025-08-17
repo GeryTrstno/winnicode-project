@@ -35,7 +35,7 @@ php artisan key:generate
 ### 4. Buat file Database
 ```bash
 #Migrasi database
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
 ### 5. Jalankan localhost
