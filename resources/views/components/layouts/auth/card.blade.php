@@ -10,6 +10,7 @@
                     <span class="flex h-9 w-9 items-center justify-center rounded-md">
                         <x-app-logo-icon class="size-9 fill-current text-black dark:text-white" />
                     </span>
+                    <flux:heading size="xl" class="font-serif">News Times</flux:heading>
 
                     <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
                 </a>

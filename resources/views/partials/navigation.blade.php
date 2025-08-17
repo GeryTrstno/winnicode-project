@@ -30,9 +30,9 @@
                     {{ __('News') }}
                 </flux:navbar.item>
 
-                <flux:navbar.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
+                {{-- <flux:navbar.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
                     {{ __('About') }}
-                </flux:navbar.item>
+                </flux:navbar.item> --}}
 
                 <flux:navbar.item icon="circle-plus" :href="route('news.create')" :current="request()->routeIs('news.create')" wire:navigate>
                     {{ __('Create') }}
@@ -196,9 +196,9 @@
             {{ __('News') }}
             </flux:navlist.item>
 
-            <flux:navlist.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
+            {{-- <flux:navlist.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
             {{ __('About Us') }}
-            </flux:navlist.item>
+            </flux:navlist.item> --}}
 
             <flux:navlist.item icon="circle-plus" :href="route('news.create')" :current="request()->routeIs('news.create')" wire:navigate>
             {{ __('Create') }}
