@@ -188,9 +188,9 @@
                             </button>
                         </div>
                     @else
-                        <button class="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+                        {{-- <button class="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
                             {{ $isFollowing ? 'Unfollow' : 'Follow' }}
-                        </button>
+                        </button> --}}
                     @endif
                 </div>
                 <div class="flex gap-6">
