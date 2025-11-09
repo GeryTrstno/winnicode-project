@@ -22,9 +22,16 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,       // Seed news
             CategoryNewsSeeder::class, // Seed category_news pivot table
             SubCategoryNewsSeeder::class, // Seed subcategory_news pivot table
-            UserProfilesSeeder::class,
             CommentSeeder::class, // Seed comments
         ]);
 
+        User::factory()->admin()->create([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('adminpassword'),
+            'username' => 'admin123',
+        ]);
+
+        $this->call(UserProfilesSeeder::class);
     }
 }

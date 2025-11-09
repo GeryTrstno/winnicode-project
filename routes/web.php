@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
@@ -40,6 +41,9 @@ Route::middleware(['auth'])->group(function () {
             'news' => $news,
         ]);
     })->name('news.index');
+
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 
     Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
 

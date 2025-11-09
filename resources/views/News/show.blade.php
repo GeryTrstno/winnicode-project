@@ -18,6 +18,14 @@
                         {{ $category->name }}
                     </flux:button>
                 @endforeach
+                {{-- tolong buatkan tombol delete disamping kategori --}}
+                <form action="{{ route('admin.delete', $news->id) }}" method="POST" class="inline-block absolute top-0 right-0">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">
+                        Delete
+                    </button>
+                </form>
                 <h2 class="text-4xl font-bold">{{ $news->title }}</h2>
                 <p class="mb-4 font-semibold text-2xl text-zinc-600 dark:text-zinc-400">{{ $news->caption }}</p>
                 <flux:text class="mb-2" size="lg">

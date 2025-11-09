@@ -8,7 +8,7 @@
 
         {{ $slot }}
 
-        @if (!request()->routeIs('user.show') && !request()->routeIs('news.create') && !request()->routeIs('news.index'))
+        @if (!request()->routeIs('user.show') && !request()->routeIs('news.create') && !request()->routeIs('news.index') && !request()->routeIs('admin.dashboard'))
             <livewire:footer></livewire:footer>
         @else
             <livewire:secondary-footer></livewire:secondary-footer>

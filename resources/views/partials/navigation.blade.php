@@ -22,21 +22,28 @@
     <flux:navbar class="-mb-px max-lg:hidden">
         @if (Route::has('login'))
             @auth
-                <flux:navbar.item icon="home-icon" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>
-                    {{ __('Home') }}
-                </flux:navbar.item>
 
-                <flux:navbar.item icon="book-open-text" :href="route('news.index')" :current="request()->routeIs('news.index')" wire:navigate>
-                    {{ __('News') }}
-                </flux:navbar.item>
+                @if (auth()->user()->role === 'admin')
+                    <flux:navbar.item icon="shield-check" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>
+                        {{ __('Admin Dashboard') }}
+                    </flux:navbar.item>
+                @endif
 
-                {{-- <flux:navbar.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
-                    {{ __('About') }}
-                </flux:navbar.item> --}}
 
-                <flux:navbar.item icon="circle-plus" :href="route('news.create')" :current="request()->routeIs('news.create')" wire:navigate>
-                    {{ __('Create') }}
-                </flux:navbar.item>
+                @if (auth()->user()->role === 'user')
+                    <flux:navbar.item icon="home-icon" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>
+                        {{ __('Home') }}
+                    </flux:navbar.item>
+
+                    <flux:navbar.item icon="book-open-text" :href="route('news.index')" :current="request()->routeIs('news.index')" wire:navigate>
+                        {{ __('News') }}
+                    </flux:navbar.item>
+
+                    <flux:navbar.item icon="circle-plus" :href="route('news.create')" :current="request()->routeIs('news.create')" wire:navigate>
+                        {{ __('Create') }}
+                    </flux:navbar.item>
+                @endif
+
 
 
                 {{-- <flux:navbar.item icon="about-us-icon" :href="route('about')" :current="request()->routeIs('about')" wire:navigate>
