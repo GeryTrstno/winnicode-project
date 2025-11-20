@@ -18,14 +18,38 @@
                         {{ $category->name }}
                     </flux:button>
                 @endforeach
-                {{-- tolong buatkan tombol delete disamping kategori --}}
-                <form action="{{ route('admin.delete', $news->id) }}" method="POST" class="inline-block absolute top-0 right-0">
-                    @csrf
-                    @method('POST')
-                    <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">
-                        Delete
-                    </button>
-                </form>
+
+                @if (auth()->user()->role === 'admin')
+
+                    @if ($news->status === 'pending')
+                        <form action="{{ route('admin.accept', $news->id) }}" method="POST" class="inline-block absolute top-0 right-0">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="mr-24 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none">
+                                Accept
+                            </button>
+                        </form>
+
+                        <form action="{{ route('admin.reject', $news->id) }}" method="POST" class="inline-block absolute top-0 right-0">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">
+                                Reject
+                            </button>
+                        </form>
+                    @endif
+
+                    @if ($news->status === 'published')
+
+                        <form action="{{ route('admin.delete', $news->id) }}" method="POST" class="inline-block absolute top-0 right-0">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">
+                                Delete
+                            </button>
+                        </form>
+                    @endif
+                @endif
                 <h2 class="text-4xl font-bold">{{ $news->title }}</h2>
                 <p class="mb-4 font-semibold text-2xl text-zinc-600 dark:text-zinc-400">{{ $news->caption }}</p>
                 <flux:text class="mb-2" size="lg">
@@ -48,6 +72,8 @@
             </div>
         </div>
 
-        <livewire:comments-section :newsId="$news->id" />
+        @if ($news->status === 'published')
+            <livewire:comments-section :newsId="$news->id" />
+        @endif
     </div>
 </x-layouts.app>

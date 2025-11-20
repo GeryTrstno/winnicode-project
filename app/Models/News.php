@@ -15,6 +15,7 @@ class News extends Model
         'content',
         'caption',
         'image',
+        'status'
     ];
 
     public function users() {

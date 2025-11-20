@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -12,11 +13,38 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $news = News::query();
+        if (auth()->user()->role != 'admin') {
+            return redirect('/')->with('error', 'Not an Admin!');
+        }
+
+        $news = News::all();
+        $totalUser = User::where('role', 'user')->count();
+        $totalPending = News::where('status', 'pending')->count();
+
 
         return view('Admin.index', [
-            'news' => $news->get(),
+            'news' => $news,
+            'totalPending' => $totalPending,
+            'totalUser' => $totalUser
         ]);
+    }
+
+    public function accept(string $id)
+    {
+        $news = News::findOrFail($id);
+        $news->status = 'published';
+        $news->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'News item accepted succesfully.');
+    }
+
+    public function reject(string $id)
+    {
+        $news = News::findorFail($id);
+        $news->status = 'rejected';
+        $news->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'News item rejected succesfully.');
     }
 
     /**

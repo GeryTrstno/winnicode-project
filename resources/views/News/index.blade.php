@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="__('News List')">
     <div class="grid grid-cols-2 auto-rows-min gap-5 md:grid-cols-4">
         @if($news->count() > 0)
             @foreach ($news as $item)

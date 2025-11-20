@@ -13,6 +13,7 @@ class TrendingNews extends Component
     public function render()
     {
         $this->news = News::with('categories')
+            ->where('status', 'published')
             ->latest()
             ->take(3)
             ->get();

@@ -33,7 +33,9 @@ Route::middleware(['auth'])->group(function () {
         }
 
         // Menyelesaikan query dan mengambil hasilnya
-        $news = $news->get(); // Mendapatkan hasil query setelah filter
+        $news = $news
+            ->where('status', 'published')
+            ->get(); // Mendapatkan hasil query setelah filter
 
         // dd($news); // Debugging untuk melihat hasil query
 
@@ -44,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::post('admin/accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
+    Route::post('admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
 
     Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
 

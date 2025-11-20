@@ -31,6 +31,7 @@ class NewsFactory extends Factory
             'content' => $content,
             'caption' => fake()->sentence(),
             'slug' => Str::slug($title),
+            'status' => 'published'
         ];
     }
 }

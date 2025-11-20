@@ -51,7 +51,9 @@ class NewsIndex extends Component
     public function render()
     {
         // Memulai query dengan relasi yang diperlukan
-        $query = News::with(['categories', 'subcategories'])->latest();
+        $query = News::with(['categories', 'subcategories'])
+                ->where('status', 'published')
+                ->latest();
 
         // Filter berdasarkan categoryId jika ada
         if ($this->categoryId) {

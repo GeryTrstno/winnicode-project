@@ -62,6 +62,7 @@ class NewsController extends Controller
         $news->image = $request->file('image') ? $request->file('image')->store('images/news', 'public') : null;
         $news->slug = Str::slug($request->input('title'), '-');
         $news->user_id = Auth::id();
+        $news->status = 'pending';
 
         $news->save();
 
