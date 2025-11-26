@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
     })->name('news.index');
 
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('admin/show/{news:slug}', [AdminController::class, 'show'])->name('admin.show');
+    Route::put('admin/update/{news:slug}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
     Route::post('admin/accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
     Route::post('admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
@@ -52,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
 
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::get('news/edit/{news:slug}', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('news/update/{news:slug}', [NewsController::class, 'update'])->name('news.update');
     Route::post('news', [NewsController::class, 'store'])->name('news.store');
     Route::get('news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
 

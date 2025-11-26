@@ -102,7 +102,15 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = News::where('slug', $id)->firstOrFail();
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+
+        return view('News.edit', [
+            'news' => $news,
+            'categories' => $categories,
+            'subcategories' => $subcategories,
+        ]);
     }
 
     /**
@@ -110,7 +118,34 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $news = News::where('slug', $id)->firstOrFail();
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'caption' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'categories' => 'array|max:3',
+            'categories.*' => 'exists:categories,id',
+            'subcategories' => 'array|max:6',
+            'subcategories.*' => 'exists:subcategories,id',
+        ]);
+
+        $news->title = $request->input('title');
+        $news->content = $request->input('content');
+        $news->caption = $request->input('caption');
+        if ($request->hasFile('image')) {
+            $news->image = $request->file('image')->store('images/news', 'public');
+        }
+        $news->slug = Str::slug($request->input('title'), '-');
+        $news->status = 'pending';
+
+        $news->save();
+
+        // Update categories and subcategories logic can be added here
+
+        return redirect()->route('news.show', $news->slug)
+            ->with('success', 'News updated successfully.');
     }
 
     /**

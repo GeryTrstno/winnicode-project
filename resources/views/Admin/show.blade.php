@@ -1,26 +1,10 @@
-<x-layouts.app :title="__('Edit News')">
+<x-layouts.app :title="__('Review News')">
     <div class="max-w-4xl mx-auto w-full bg-white dark:bg-zinc-900 rounded-2xl p-10 shadow-2xl space-y-8">
-        <h1 class="text-4xl font-bold text-zinc-800 dark:text-white text-center">{{ __('Edit Article') }}</h1>
+        <h1 class="text-4xl font-bold text-zinc-800 dark:text-white text-center">{{ __('Review Article') }}</h1>
 
-        <form id="news-form" action="{{ route('news.update', $news->slug) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form id="news-form" action="{{ route('admin.update', $news->slug) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
-
-            {{-- Admin Comment --}}
-            @if ($news->comment === null)
-                <div>
-                    <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Admin Comment') }}</flux:text>
-                    <flux:textarea
-                        name="admin_comment"
-                        class="w-full border border-zinc-300 dark:border-zinc-200 rounded-xl"
-                        rows="4"
-                        placeholder="Add your comment here..."
-                        disabled
-                        resize="none"
-                    >{{ old('admin_comment', $news->comment) }}</flux:textarea>
-                    @error('admin_comment') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-                </div>
-            @endif
 
             {{-- Title --}}
             <div>
@@ -30,6 +14,7 @@
                     class="w-full border border-zinc-300 dark:border-zinc-200 rounded-xl"
                     required
                     value="{{ old('title', $news->title) }}"
+                    disabled
                 />
                 @error('title') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
@@ -38,7 +23,7 @@
             <div>
                 <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Content') }}</flux:text>
                 <div class="rounded-xl border border-zinc-300 dark:border-zinc-700">
-                    <div wire:ignore id="quill-editor" class="min-h-[250px] rounded-b-xl p-4 bg-white dark:bg-zinc-800 text-black dark:text-zinc-100">
+                    <div wire:ignore id="quill-editor" class="min-h-[250px] rounded-b-xl p-4 bg-white dark:bg-zinc-800 text-black dark:text-zinc-100" disabled>
                         {!! old('content', $news->content) !!}
                     </div>
                     <input type="hidden" name="content" id="content-input" value="{{ old('content', $news->content) }}">
@@ -46,44 +31,9 @@
                 @error('content') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="grid grid-cols-2">
-                {{-- Category --}}
-                <div>
-                    <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Category') }}</flux:text>
-                    <p class="text-xs text-black dark:text-zinc-200 mb-2">Choose Max. 3</p>
-                    <flux:checkbox.group wire:model="selectedCategories" label="">
-                        @foreach($categories as $category)
-                            <flux:checkbox name="categories[]" label="{{ $category->name }}" value="{{ $category->id }}" />
-                        @endforeach
-                    </flux:checkbox.group>
-                </div>
-
-                {{-- SubCategory --}}
-                <div>
-                    <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('SubCategory') }}</flux:text>
-                    <p class="text-xs text-black dark:text-zinc-200 mb-2">Choose Max. 6</p>
-                    <flux:checkbox.group wire:model="selectedSubCategories" label="">
-                        @foreach($subcategories as $subcategory)
-                            <flux:checkbox name="subcategories[]" label="{{ $subcategory->name }}" value="{{ $subcategory->id }}" />
-                        @endforeach
-                    </flux:checkbox.group>
-                </div>
-            </div>
-
             {{-- Image --}}
             <div>
                 <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Image') }}</flux:text>
-                <input
-                    type="file"
-                    name="image"
-                    accept="image/*"
-                    class="block w-full text-sm text-zinc-900 dark:text-zinc-200
-                        file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold
-                        file:bg-blue-600 file:text-white hover:file:bg-blue-700
-                        dark:file:bg-zinc-700 dark:file:text-white dark:hover:file:bg-zinc-600
-                        "
-                />
-                @error('image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 @if($news->image)
                     <div class="mt-4">
                         <img src="{{ asset('storage/' . $news->image) }}" alt="Current Image" class="w-32 h-32 object-cover rounded-lg">
@@ -98,14 +48,32 @@
                     name="caption"
                     class="w-full border border-zinc-300 dark:border-zinc-200 rounded-xl"
                     value="{{ old('caption', $news->caption) }}"
+                    disabled
                 />
                 @error('caption') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            {{-- Submit Button --}}
-            <div class="flex justify-end">
-                <flux:button type="submit" variant="primary" class="w-1/4 py-3 text-lg font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white dark:text-zinc-900 dark:bg-zinc-100 dark:hover:bg-zinc-400 transition-colors">
-                    {{ __('Update Article') }}
+            {{-- Admin Comment --}}
+            <div>
+                <flux:text size="xl" class="mb-1 dark:text-white text-zinc-900 font-medium">{{ __('Admin Comment') }}</flux:text>
+                {{-- <textarea name="admin_comment" class="w-full border border-zinc-300 dark:border-zinc-200 rounded-xl" rows="4">{{ old('admin_comment') }}</textarea> --}}
+                <flux:textarea
+                    name="admin_comment"
+                    class="w-full border border-zinc-300 dark:border-zinc-200 rounded-xl"
+                    rows="4"
+                    placeholder="Add your comment here..."
+                >{{ old('admin_comment') }}</flux:textarea>
+                @error('admin_comment') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            {{-- Action Buttons --}}
+            <div class="flex justify-between">
+                <flux:button type="submit" name="status" value="reject" variant="primary" class="w-1/3 py-3 text-lg font-semibold rounded-xl bg-red-600 hover:bg-red-700 text-white dark:text-zinc-900 dark:bg-zinc-100 dark:hover:bg-zinc-400 transition-colors">
+                    {{ __('Reject') }}
+                </flux:button>
+
+                <flux:button type="submit" name="status" value="accept" variant="primary" class="w-1/3 py-3 text-lg font-semibold rounded-xl bg-green-600 hover:bg-green-700 text-white dark:text-zinc-900 dark:bg-zinc-100 dark:hover:bg-zinc-400 transition-colors">
+                    {{ __('Accept') }}
                 </flux:button>
             </div>
         </form>

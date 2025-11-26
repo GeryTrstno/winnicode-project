@@ -24,6 +24,27 @@ class NewsFactory extends Factory
             ->map(fn() => fake()->sentence())
             ->implode('');
 
+        // Menentukan status random
+        $status = fake()->randomElement(['published', 'rejected', 'pending']);
+
+        // Menentukan komentar berdasarkan status
+        $comment = $status === 'pending' ? null : match($status) {
+            'published' => fake()->randomElement([
+                'Artikel ini sudah sangat bagus, lanjutkan!',
+                'Konten yang menarik, diterima!',
+                'Penyajian informasi sangat jelas, diterima!',
+                'Artikel diterima, namun ada sedikit revisi yang perlu dilakukan',
+            ]),
+            'rejected' => fake()->randomElement([
+                'Ada beberapa bagian yang perlu diperbaiki.',
+                'Sumber kurang jelas, coba periksa kembali.',
+                'Artikel perlu penyempurnaan lebih lanjut.',
+                'Konten kurang relevan, perlu perubahan besar.',
+                'Tolong perbaiki dan sertakan referensi yang lebih jelas.',
+            ]),
+            'pending' => null, // Tidak ada komentar untuk status pending
+            default => 'Komentar tidak tersedia',
+        };
 
         return [
             'user_id' => User::factory(),
@@ -31,7 +52,8 @@ class NewsFactory extends Factory
             'content' => $content,
             'caption' => fake()->sentence(),
             'slug' => Str::slug($title),
-            'status' => 'published'
+            'status' => $status,
+            'comment' => $comment,
         ];
     }
 }

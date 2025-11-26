@@ -76,7 +76,7 @@
             <div class="grid grid-cols-2 auto-rows-min gap-5 md:grid-cols-4">
                 @foreach ($news as $item)
                     @if ($item->status === 'pending')
-                        <a href="{{ route('news.show', $item->slug) }}" class="shadow-md hover:shadow-xl hover:scale-102 relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg transform transition-all duration-300 ease-in-out">
+                        <a href="{{ route('admin.show', $item->slug) }}" class="shadow-md hover:shadow-xl hover:scale-102 relative aspect-[3/4] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-lg transform transition-all duration-300 ease-in-out">
                             @if($item->image)
                                 <img src="{{ asset('storage/' . $item->image)}}" alt="{{ $item->title }}" class="w-full h-1/2 object-cover">
                             @else

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('caption')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->unique();
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             // $table->unsignedBigInteger('comments_count')->default(0);

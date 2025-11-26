@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class AdminController extends Controller
 {
@@ -68,15 +70,15 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $news = News::where('slug', $id)->firstOrFail();
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return view('Admin.show', [
+            'news' => $news,
+            'categories' => $categories,
+            'subcategories' => $subcategories,
+        ]);
     }
 
     /**
@@ -84,7 +86,24 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $news = News::where('slug', $id)->firstOrFail();
+
+        $request->validate([
+            'admin_comment' => 'nullable|string|max:1000',
+        ]);
+
+        $news->comment = $request->input('admin_comment');
+
+        $status = $request->input('status');
+
+        if ($status === 'accept') {
+            $news->status = 'published'; // Set status to 'published' for accept
+        } elseif ($status === 'reject') {
+            $news->status = 'rejected'; // Set status to 'rejected' for reject
+        }
+        $news->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'News item updated successfully.');
     }
 
     /**
